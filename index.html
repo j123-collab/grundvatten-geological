@@ -942,6 +942,29 @@
       #desktop-root .d-contact-right { flex: 1 1 auto; padding-top: 0; }
 
       #desktop-root .site-footer { padding-left: 0; }
+
+      /* Gallery: stack cards below images when viewport is too narrow */
+      #desktop-root .d-gallery-content {
+        flex-direction: column;
+        max-height: none;
+        gap: 20px;
+      }
+      #desktop-root .d-gallery-content .gallery-grid {
+        width: 100%;
+      }
+      #desktop-root .d-company-info {
+        flex: none;
+        flex-direction: row;
+        align-items: stretch;
+        gap: 16px;
+        width: 100%;
+      }
+      #desktop-root .d-company-card.company-logo-top {
+        flex: 0 0 180px;
+      }
+      #desktop-root .d-company-card.company-info-bottom {
+        flex: 1;
+      }
     }
 
     @media (max-width: 768px) {
