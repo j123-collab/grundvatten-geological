@@ -963,7 +963,6 @@
       width: 100%;
       z-index: 50;
       height: 120px; /* Reduced to minimum fill as requested */
-      background: #122224; /* Solid fill color for the bottom */
       pointer-events: none;
       overflow: hidden;
       -webkit-transform: translateZ(0);
@@ -1643,8 +1642,13 @@
         border-radius: 6px;
       }
 
-      /* Waves are now enabled on mobile as requested */
-      /* .wave-overlay { display: none; } */
+      /* Waves hidden on mobile to keep just the block color as requested */
+      .wave-overlay {
+        background: #122224;
+      }
+      .wave-overlay svg {
+        display: none;
+      }
 
       #desktop-root .form-input,
       #desktop-root .form-textarea { font-size: 16px; }
