@@ -39,11 +39,11 @@
       font-size: 22px;
       font-weight: 400;
       letter-spacing: 2px;
-      color: #4169e1; /* Replaced var(--royal-blue) with hardcoded value */
+      color: #ffffff;
       text-decoration: none;
     }
 
-    .nav-logo span { color: #e0612e; /* Replaced var(--rust) with hardcoded value */ }
+    .nav-logo span { color: #e0612e; }
 
     .mobile-only-header .lang-toggle {
       position: static;
@@ -184,6 +184,8 @@
        ══════════════════════════════════════════════ */
 
     /* ---------- Reset & Base ---------- */
+    html, body { background: #131920; margin: 0; padding: 0; }
+
     #desktop-root *, #desktop-root *::before, #desktop-root *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     #desktop-root * { scrollbar-width: none; -ms-overflow-style: none; }
@@ -1056,7 +1058,8 @@
       
       /* Hide desktop navigation as we use the mobile header */
       #desktop-root .hero-nav { display: none !important; }
-      #desktop-root .nav-logo { display: none; } /* Hide the one in desktop if it exists */
+      /* Hide lang toggle in hero stratum — mobile header has its own */
+      #desktop-root #langToggle { display: none !important; }
       
 
     }
