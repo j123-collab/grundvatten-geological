@@ -1066,6 +1066,22 @@
       #desktop-root #langToggle { display: none !important; }
       /* Hide hero title — already shown in the fixed top bar */
       #desktop-root .hero-title { display: none !important; }
+      /* Gallery section: stack images → logo card → info card */
+      #desktop-root .d-gallery-content {
+        flex-direction: column;
+        max-height: none;
+        gap: 16px;
+      }
+      #desktop-root .d-gallery-content .gallery-grid {
+        width: 100%;
+      }
+      #desktop-root .d-company-info {
+        flex: none;
+        width: 100%;
+      }
+      #desktop-root .d-company-card.company-logo-top {
+        flex: none;
+      }
       
 
     }
