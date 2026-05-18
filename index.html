@@ -1397,7 +1397,8 @@
     #desktop-root .d-gallery-content {
       display: flex;
       gap: 40px;
-      align-items: flex-end; max-height: 80vh;
+      align-items: stretch;
+      max-height: 80vh;
     }
     #desktop-root .d-gallery-content .gallery-grid {
       flex: 1 1 0;
@@ -1405,28 +1406,22 @@
     }
     #desktop-root .d-company-info {
       flex: 0 0 clamp(250px, 25vw, 320px);
-      align-self: stretch;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-    #desktop-root .d-company-card.company-filler-top {
+    /* Logo card: stretches to fill space above company info */
+    #desktop-root .d-company-card.company-logo-top {
       flex: 1;
-      min-height: 0;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      padding: 0;
-    }
-    #desktop-root .d-company-card.company-info-mid {
-      flex: 0 0 auto;
-    }
-    #desktop-root .d-company-card.company-logo-bottom {
-      flex: 0 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px 20px;
+      min-height: 0;
+    }
+    /* Company info card: natural/compact size at the bottom */
+    #desktop-root .d-company-card.company-info-bottom {
+      flex: 0 0 auto;
     }
     #desktop-root .company-logo-img {
       width: 100%;
@@ -2031,21 +2026,18 @@
         <!-- Company Info -->
 
         <div class="d-company-info">
-          <!-- Filler: stretches to align top edge with image grid top -->
-          <div class="d-company-card company-filler-top"></div>
+          <!-- Logo card: fills height to match top of image grid -->
+          <div class="d-company-card company-logo-top">
+            <img src="images/logo.png" alt="Maxilium Logo" class="company-logo-img">
+          </div>
 
-          <!-- Company info: compact, natural height -->
-          <div class="d-company-card company-info-mid">
+          <!-- Company info: compact card aligned to bottom of images -->
+          <div class="d-company-card company-info-bottom">
             <p class="d-company-line d-company-copy">&copy; 2026 Maxilium Groundwater. All rights reserved.</p>
             <p class="d-company-line d-company-tag">Specialist Military Groundwater Services</p>
             <p class="d-company-line d-company-legal">Org.nr: 195805068250 &nbsp;&middot;&nbsp; F-skatt 2026</p>
             <p class="d-company-line d-company-legal">Ölmevägen 17, SE-123 32 Farsta, Stockholm</p>
             <p class="d-company-line d-company-legal">Filial: Övre Hantverksgatan 32A, Östersund</p>
-          </div>
-
-          <!-- Logo: at the bottom in matching styled box -->
-          <div class="d-company-card company-logo-bottom">
-            <img src="images/logo.png" alt="Maxilium Logo" class="company-logo-img">
           </div>
         </div>
   </section>
