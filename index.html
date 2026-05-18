@@ -291,6 +291,28 @@
       color: var(--white);
     }
 
+    /* ── HEADER LANG TOGGLE (horizontal in nav) ── */
+    #mobile-root nav .lang-toggle {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      border: none;
+      background: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      display: flex;
+      gap: 8px;
+      z-index: auto;
+    }
+    #mobile-root nav .lang-btn {
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 4px;
+    }
+    #mobile-root nav .lang-btn + .lang-btn {
+      border-top: none;
+    }
+
     /* ── OCEAN DEPTH GRADIENT ── */
     .ocean-depth {
       position: relative;
@@ -1677,10 +1699,11 @@
 
   <nav aria-label="Mobile section navigation">
     <a class="nav-logo" href="#home">Maxilium <span>Groundwater</span></a>
-    <ul class="nav-links">
-      <li><a href="#home" data-i18n="nav.home">Home</a></li>
-      <li><a href="#about" data-i18n="nav.about">About</a></li>
-          </ul>
+    <!-- Language toggle replaces text links -->
+    <div class="lang-toggle">
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-btn active" data-lang="sv">SV</button>
+    </div>
   </nav>
 
   <!-- HOME -->
@@ -1840,10 +1863,7 @@
     <button type="button" class="lightbox-next" id="lightbox-next" aria-label="Next image">&#8594;</button>
   </div>
 
-  <div class="lang-toggle">
-    <button type="button" class="lang-btn" data-lang="en">EN</button>
-    <button type="button" class="lang-btn active" data-lang="sv">SV</button>
-  </div>
+  <!-- Old floating lang toggle removed -->
 
   <div class="depth-meter" aria-hidden="true">
     <div class="depth-meter-track">
