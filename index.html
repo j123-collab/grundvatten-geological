@@ -1461,8 +1461,20 @@ if (window.innerWidth < 768) {
 
   applyLang(currentLang);
 
-
-
+  // ---- Country Cycling (map animation) ----
+  (function () {
+    var mapSvg = document.querySelector('.hero-map-svg');
+    if (!mapSvg) return;
+    var mapCountries = ['se', 'no', 'fi'];
+    var activeCountry = 0;
+    function cycleCountry() {
+      mapCountries.forEach(function (c) { mapSvg.classList.remove('highlight-' + c); });
+      mapSvg.classList.add('highlight-' + mapCountries[activeCountry]);
+      activeCountry = (activeCountry + 1) % mapCountries.length;
+    }
+    cycleCountry();
+    if (!reduceMotion) setInterval(cycleCountry, 4000);
+  })();
 
 
 
