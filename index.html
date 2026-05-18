@@ -307,23 +307,6 @@
       transform: translateY(0);
     }
 
-    /* ---------- Fixed Wave Overlay ---------- */
-    .wave-overlay {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      z-index: 50;
-      height: 160px;
-      pointer-events: none;
-      overflow: hidden;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 35%);
-    }
-
     /* ---------- Bubbles (desktop) ---------- */
     #desktop-root .bubbles {
       position: fixed;
@@ -351,31 +334,31 @@
       100% { transform: translateX(40px) scale(1.2); opacity: 0; bottom: 110%; }
     }
 
-    #stream-wave-canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
 
-    /* ---------- Hero Canvas Wave ---------- */
-    .hero-wave {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 150px;
+    /* ---------- Fixed Wave Overlay ---------- */
+    .wave-overlay {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 50;
+      height: 120px;
       pointer-events: none;
-      z-index: 60;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+      overflow: hidden;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
 
-    #hero-wave-canvas {
+    .wave-overlay svg {
       display: block;
       width: 100%;
       height: 100%;
+      overflow: visible;
     }
 
     @media (max-width: 768px) {
-      .hero-wave { display: none; }
+      .wave-overlay { display: none; }
     }
 
     /* ---------- Navigation Dots ---------- */
@@ -1017,11 +1000,6 @@
         border-radius: 6px;
       }
 
-      /* Hide waves on mobile — they overlap browser chrome (Safari search bar etc) */
-      .wave-overlay {
-        display: none !important;
-      }
-
       #desktop-root .form-input,
       #desktop-root .form-textarea { font-size: 16px; }
 
@@ -1228,7 +1206,6 @@
         </div><!-- /.hero-text -->
       </div><!-- /.hero-columns -->
     </div>
-    <div class="hero-wave" aria-hidden="true"><canvas id="hero-wave-canvas"></canvas></div>
   </header>
 
   <!-- STRATUM 1: ABOUT -->
@@ -1308,8 +1285,17 @@
   <div class="bubbles" aria-hidden="true"></div>
 
   <!-- Fixed wave overlay — inside #desktop-root so z-index works with canvas wave -->
+
+  <!-- Flowing wave overlay -->
   <div class="wave-overlay" aria-hidden="true">
-    <canvas id="stream-wave-canvas"></canvas>
+    <svg viewBox="0 0 1440 140" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-layer" d="M0 50 Q360 35 720 50 T1440 40 V140 H0Z" fill="#2a6a6e" opacity="0.45"/>
+      <path class="wave-layer" d="M0 58 Q360 42 720 58 T1440 48 V140 H0Z" fill="#35807a" opacity="0.35"/>
+      <path class="wave-layer" d="M0 66 Q360 50 720 66 T1440 56 V140 H0Z" fill="#4dbead" opacity="0.3"/>
+      <path class="wave-layer" d="M0 74 Q360 58 720 74 T1440 64 V140 H0Z" fill="#256060" opacity="0.6"/>
+      <path class="wave-layer" d="M0 82 Q360 66 720 82 T1440 72 V140 H0Z" fill="#4dbead" opacity="0.35"/>
+      <path class="wave-layer" d="M0 90 Q360 76 720 90 T1440 82 V140 H0Z" fill="#122224" opacity="1"/>
+    </svg>
   </div>
 
 </div><!-- /#desktop-root -->
@@ -1737,119 +1723,61 @@ if (window.innerWidth >= 768) {
     // ---- Mouse-Reactive Wave Animation ----
   })();
 
-  // ---- Stream Wave Overlay (canvas) ----
-  if (!reduceMotion) {
-    (function () {
-      var canvas = document.getElementById('stream-wave-canvas');
-      if (!canvas) return;
-      var ctx2 = canvas.getContext('2d');
-      var dpr = window.devicePixelRatio || 1;
-      var STREAM = [
-        { alpha: 0.20, amp: 10, freq: 0.58, speed: 0.00015, phase: 0.0,  base: 0.32 },
-        { alpha: 0.35, amp:  8, freq: 0.88, speed: 0.00024, phase: 1.90, base: 0.43 },
-        { alpha: 0.50, amp:  7, freq: 0.70, speed: 0.00034, phase: 3.20, base: 0.53 },
-        { alpha: 0.62, amp:  6, freq: 1.02, speed: 0.00044, phase: 1.05, base: 0.62 },
-        { alpha: 0.75, amp:  5, freq: 0.80, speed: 0.00052, phase: 2.60, base: 0.71 },
-        { alpha: 0.88, amp:  5, freq: 1.15, speed: 0.00060, phase: 0.80, base: 0.80 },
-        { alpha: 1.00, amp:  4, freq: 0.95, speed: 0.00068, phase: 3.80, base: 0.89 }
-      ];
-      var SC = '#4a88bb';
-      function resizeStream() {
-        canvas.width  = Math.round((canvas.offsetWidth  || window.innerWidth) * dpr);
-        canvas.height = Math.round((canvas.offsetHeight || 160) * dpr);
-      }
-      function drawStream(ts) {
-        var W = canvas.width, H = canvas.height;
-        ctx2.clearRect(0, 0, W, H);
-        STREAM.forEach(function (l) {
-          var yBase = H * l.base;
-          var amp   = l.amp * dpr;
-          var step  = dpr > 1 ? 3 : 2;
-          ctx2.globalAlpha = l.alpha;
-          ctx2.fillStyle   = SC;
-          ctx2.beginPath();
-          for (var x = 0; x <= W; x += step) {
-            var y = yBase + Math.sin(x / W * Math.PI * 2 * l.freq + ts * l.speed + l.phase) * amp;
-            x === 0 ? ctx2.moveTo(x, y) : ctx2.lineTo(x, y);
-          }
-          ctx2.lineTo(W, H);
-          ctx2.lineTo(0, H);
-          ctx2.closePath();
-          ctx2.fill();
-        });
-        ctx2.globalAlpha = 1;
-        requestAnimationFrame(drawStream);
-      }
-      var srTimer;
-      window.addEventListener('resize', function () { clearTimeout(srTimer); srTimer = setTimeout(resizeStream, 100); });
-      resizeStream();
-      requestAnimationFrame(drawStream);
-    })();
+  // ---- Flowing Wave Overlay (SVG, mouse-reactive) ----
+  var wavePaths = Array.from(document.querySelectorAll('.wave-layer'));
+  var wovLayers = [
+    { baseY: 50, amp: 7,  lift: 6,  speed: 1.2, phase: 0 },
+    { baseY: 58, amp: 8,  lift: 9,  speed: 1.6, phase: 0.8 },
+    { baseY: 66, amp: 6,  lift: 12, speed: 2.1, phase: 1.6 },
+    { baseY: 74, amp: 7,  lift: 16, speed: 1.4, phase: 2.4 },
+    { baseY: 82, amp: 5,  lift: 20, speed: 2.3, phase: 3.2 },
+    { baseY: 90, amp: 4,  lift: 24, speed: 1.8, phase: 4.0 }
+  ];
+  var mouseX = 0.5, smoothX = 0.5, NUM_POINTS = 24;
+  var wovW = window.innerWidth;
+  var wovSvg = document.querySelector('.wave-overlay svg');
+  function updateWovWidth() {
+    wovW = window.innerWidth;
+    if (wovSvg) wovSvg.setAttribute('viewBox', '0 0 ' + wovW + ' 140');
   }
-
-  // ---- Hero Canvas Waves (running stream) ----
-  if (!reduceMotion && window.innerWidth >= 768) {
-    (function () {
-      var canvas = document.getElementById('hero-wave-canvas');
-      if (!canvas) return;
-      var ctx = canvas.getContext('2d');
-      var dpr = window.devicePixelRatio || 1;
-
-      var LAYERS = [
-        { alpha: 0.15, amp: 16, freq: 0.58, speed: 0.00015, phase: 0.0,  base: 0.28 },
-        { alpha: 0.28, amp: 13, freq: 0.88, speed: 0.00024, phase: 1.90, base: 0.37 },
-        { alpha: 0.42, amp: 11, freq: 0.70, speed: 0.00034, phase: 3.20, base: 0.46 },
-        { alpha: 0.56, amp:  9, freq: 1.02, speed: 0.00044, phase: 1.05, base: 0.54 },
-        { alpha: 0.70, amp:  8, freq: 0.80, speed: 0.00052, phase: 2.60, base: 0.61 },
-        { alpha: 0.85, amp:  7, freq: 1.15, speed: 0.00060, phase: 0.80, base: 0.68 },
-        { alpha: 1.00, amp:  6, freq: 0.95, speed: 0.00068, phase: 3.80, base: 0.75 }
-      ];
-      var COLOR = '#4a88bb';
-
-      function resize() {
-        canvas.width  = Math.round((canvas.offsetWidth  || window.innerWidth)  * dpr);
-        canvas.height = Math.round((canvas.offsetHeight || 150) * dpr);
-      }
-
-      function draw(ts) {
-        var W = canvas.width;
-        var H = canvas.height;
-        ctx.clearRect(0, 0, W, H);
-
-        LAYERS.forEach(function (l) {
-          var yBase = H * l.base;
-          var amp   = l.amp * dpr;
-          var step  = dpr > 1 ? 3 : 2;
-
-          ctx.globalAlpha = l.alpha;
-          ctx.fillStyle   = COLOR;
-          ctx.beginPath();
-
-          for (var x = 0; x <= W; x += step) {
-            var y = yBase + Math.sin(x / W * Math.PI * 2 * l.freq + ts * l.speed + l.phase) * amp;
-            x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-          }
-
-          ctx.lineTo(W, H);
-          ctx.lineTo(0, H);
-          ctx.closePath();
-          ctx.fill();
-        });
-
-        ctx.globalAlpha = 1;
-        requestAnimationFrame(draw);
-      }
-
-      var resizeTimer;
-      window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(resize, 100);
-      });
-
-      resize();
-      requestAnimationFrame(draw);
-    })();
+  updateWovWidth();
+  window.addEventListener('resize', updateWovWidth);
+  document.addEventListener('mousemove', function (e) { mouseX = e.clientX / window.innerWidth; }, { passive: true });
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function getWovPts(layer, time) {
+    var pts = [];
+    for (var i = 0; i <= NUM_POINTS; i++) {
+      var t = i / NUM_POINTS;
+      var chop = 1 - t * 0.35;
+      var y = layer.baseY
+        + Math.sin(time * layer.speed + t * Math.PI * 6 + layer.phase) * layer.amp
+        + Math.sin(time * layer.speed * 0.7 + t * Math.PI * 10 + layer.phase * 1.5) * layer.amp * 0.5 * chop
+        + Math.sin(time * layer.speed * 1.3 + t * Math.PI * 14 + layer.phase * 0.8) * layer.amp * 0.35 * chop;
+      var dist = t - smoothX;
+      y -= Math.exp(-dist * dist * 12) * layer.lift;
+      pts.push([t * wovW, y]);
+    }
+    return pts;
   }
+  function buildWovPath(pts) {
+    var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+    for (var i = 0; i < pts.length - 1; i++) {
+      var p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(i + 2, pts.length - 1)];
+      var cp1x = p1[0] + (p2[0] - p0[0]) / 6, cp1y = p1[1] + (p2[1] - p0[1]) / 6;
+      var cp2x = p2[0] - (p3[0] - p1[0]) / 6, cp2y = p2[1] - (p3[1] - p1[1]) / 6;
+      d += ' C' + cp1x.toFixed(1) + ' ' + cp1y.toFixed(1) + ' ' + cp2x.toFixed(1) + ' ' + cp2y.toFixed(1) + ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    }
+    return d + ' V140 H0Z';
+  }
+  function animateWaves(time) {
+    var t = time * 0.001;
+    smoothX = lerp(smoothX, mouseX, 0.06);
+    for (var i = 0; i < wavePaths.length; i++) {
+      if (wavePaths[i]) wavePaths[i].setAttribute('d', buildWovPath(getWovPts(wovLayers[i], t)));
+    }
+    requestAnimationFrame(animateWaves);
+  }
+  if (!reduceMotion) requestAnimationFrame(animateWaves);
 
 } // if (window.innerWidth >= 768)
 </script>
