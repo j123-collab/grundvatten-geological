@@ -1447,12 +1447,10 @@ if (window.innerWidth < 768) {
      MOBILE JS
      ═══════════════════════════════════════ */
 
-  let currentLang;
-  try { currentLang = localStorage.getItem('lang') || 'sv'; } catch (e) { currentLang = 'sv'; }
+  let currentLang = 'sv';
 
   function applyLang(lang) {
     currentLang = lang;
-    try { localStorage.setItem('lang', lang); } catch (e) {}
     document.documentElement.lang = lang;
     const dict = translations[lang];
 
@@ -1563,7 +1561,7 @@ if (window.innerWidth >= 768) {
     'use strict';
 
     var desktopRoot = document.getElementById('desktop-root');
-    var currentLang = localStorage.getItem('lang') || 'sv';
+    var currentLang = 'sv';
     var langButtons = desktopRoot.querySelectorAll('#langToggle .lang-btn');
 
     // ---- Section Navigation (snap-scroll) ----
@@ -1683,7 +1681,6 @@ if (window.innerWidth >= 768) {
     function setLanguage(lang) {
       if (!translations || !translations[lang]) return;
       currentLang = lang;
-      try { localStorage.setItem('lang', lang); } catch (e) {}
       document.documentElement.lang = lang;
       var t = translations[lang];
 
