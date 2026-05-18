@@ -1334,15 +1334,7 @@
 
 var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (window.innerWidth < 768) {
-  /* ═══════════════════════════════════════
-     MOBILE JS
-     ═══════════════════════════════════════ */
-
-  let currentLang;
-  try { currentLang = localStorage.getItem('lang') || 'sv'; } catch (e) { currentLang = 'sv'; }
-
-  const translations = {
+var translations = {
     en: {
       statusOp: "OPERATIONAL",
       region: "SCANDINAVIA",
@@ -1441,7 +1433,16 @@ if (window.innerWidth < 768) {
       formSuccessTitle: "Förfrågan skickad",
       formSuccessMsg: "Din förfrågan har mottagits. Du kommer att kontaktas via säkra kanaler."
     }
-  };
+};
+
+if (window.innerWidth < 768) {
+  /* ═══════════════════════════════════════
+     MOBILE JS
+     ═══════════════════════════════════════ */
+
+  let currentLang;
+  try { currentLang = localStorage.getItem('lang') || 'sv'; } catch (e) { currentLang = 'sv'; }
+
   function applyLang(lang) {
     currentLang = lang;
     try { localStorage.setItem('lang', lang); } catch (e) {}
