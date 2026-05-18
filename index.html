@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="sv" translate="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
+  <meta name="google" content="notranslate">
   <meta name="theme-color" content="#122224">
   <meta name="description" content="Maxilium Groundwater — Strategic groundwater reserve development for defence, government and critical infrastructure across Scandinavia.">
   <meta property="og:title" content="Maxilium Groundwater">
-  <meta property="og:description" content="Strategic Groundwater Reserves — Scandinavia">
+  <meta property="og:description" content="Development of Groundwater Sources — Scandinavia">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://j123-collab.github.io/grundvatten-geological/">
-  <link rel="canonical" href="https://j123-collab.github.io/grundvatten-geological/">
-  <title>Maxilium Groundwater — Strategic Groundwater Reserves</title>
+  <meta property="og:url" content="https://j123-collab.github.io/groundwater-site/">
+  <link rel="canonical" href="https://j123-collab.github.io/groundwater-site/">
+  <title>Maxilium Groundwater — Development of Groundwater Sources</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Playfair+Display:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
@@ -688,12 +689,12 @@
       height: 100%;
     }
 
-    .wave-layer-1 { animation: waveScroll 14s linear infinite;         opacity: 0.45; }
-    .wave-layer-2 { animation: waveScroll 10s linear infinite reverse; opacity: 0.35; }
-    .wave-layer-3 { animation: waveScroll 8s  linear infinite;         opacity: 0.30; }
-    .wave-layer-4 { animation: waveScroll 12s linear infinite reverse; opacity: 0.60; }
-    .wave-layer-5 { animation: waveScroll 9s  linear infinite;         opacity: 0.35; }
-    .wave-layer-6 { animation: waveScroll 7s  linear infinite reverse; opacity: 1; }
+    .wave-layer-1 { animation: waveScroll 8s linear infinite; opacity: 0.45; }
+    .wave-layer-2 { animation: waveScroll 5s linear infinite; opacity: 0.35; }
+    .wave-layer-3 { animation: waveScroll 4s linear infinite; opacity: 0.30; }
+    .wave-layer-4 { animation: waveScroll 6s linear infinite; opacity: 0.60; }
+    .wave-layer-5 { animation: waveScroll 4.5s linear infinite; opacity: 0.35; }
+    .wave-layer-6 { animation: waveScroll 3.5s linear infinite; opacity: 1; }
 
     @keyframes waveScroll {
       from { transform: translateX(0); }
@@ -1393,7 +1394,20 @@
 
     #desktop-root .form-success p { font-size: 0.85rem; color: var(--light); opacity: 0.8; }
 
-    /* ---------- Desktop Contact Two-Column ---------- */
+    
+    #desktop-root .d-gallery-content {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    #desktop-root .d-gallery-content .gallery-grid {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    #desktop-root .d-company-info {
+      flex: 0 0 clamp(250px, 25vw, 320px);
+    }
+/* ---------- Desktop Contact Two-Column ---------- */
     #desktop-root .d-contact-grid {
       display: flex;
       gap: clamp(40px, 6vw, 100px);
@@ -1646,8 +1660,7 @@
     <ul class="nav-links">
       <li><a href="#home" data-i18n="nav.home">Home</a></li>
       <li><a href="#about" data-i18n="nav.about">About</a></li>
-      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-    </ul>
+          </ul>
   </nav>
 
   <!-- HOME -->
@@ -1724,28 +1737,28 @@
     <div class="hero-info">
       <h1 class="mobile-hero-title">Maxilium<br><span>Groundwater</span></h1>
       <span class="hero-tag"><span class="status-dot"></span><span data-i18n="hero.tag">Status · Operational</span></span>
-      <p class="hero-sub" data-i18n="hero.sub">Strategic Groundwater Reserves — Scandinavia</p>
+      <p class="hero-sub" data-i18n="hero.sub">Development of Groundwater Sources — Scandinavia</p>
       <p class="hero-sub-block" data-i18n="hero.sub2">Development and action plan for securing groundwater resources — for the establishment of groundwater sources 2025–2030.</p>
     </div>
 
     <div class="hero-wave" aria-hidden="true">
       <svg class="wave-layer-1" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 45 C200 5, 400 90, 800 38 C1000 4, 1200 85, 1600 38 L1600 110 L0 110 Z" fill="#2a6a6e"/>
+        <path d="M 0 46.8 C 16.7 49.1, 33.3 51.1, 50.0 52.6 C 66.7 54.2, 83.3 55.2, 100.0 55.6 C 116.7 56.1, 133.3 56.0, 150.0 55.5 C 166.7 55.0, 183.3 54.1, 200.0 53.2 C 216.7 52.3, 233.3 51.3, 250.0 50.4 C 266.7 49.6, 283.3 49.0, 300.0 48.5 C 316.7 48.1, 333.3 47.8, 350.0 47.6 C 366.7 47.4, 383.3 47.2, 400.0 46.8 C 416.7 46.4, 433.3 45.9, 450.0 45.0 C 466.7 44.1, 483.3 42.9, 500.0 41.5 C 516.7 40.1, 533.3 38.5, 550.0 37.0 C 566.7 35.5, 583.3 34.1, 600.0 33.2 C 616.7 32.3, 633.3 31.8, 650.0 32.0 C 666.7 32.1, 683.3 33.0, 700.0 34.4 C 716.7 35.8, 733.3 37.7, 750.0 39.9 C 766.7 42.1, 783.3 44.6, 800.0 46.8 C 816.7 49.1, 833.3 51.1, 850.0 52.6 C 866.7 54.2, 883.3 55.2, 900.0 55.6 C 916.7 56.1, 933.3 56.0, 950.0 55.5 C 966.7 55.0, 983.3 54.1, 1000.0 53.2 C 1016.7 52.3, 1033.3 51.3, 1050.0 50.4 C 1066.7 49.6, 1083.3 49.0, 1100.0 48.5 C 1116.7 48.1, 1133.3 47.8, 1150.0 47.6 C 1166.7 47.4, 1183.3 47.2, 1200.0 46.8 C 1216.7 46.4, 1233.3 45.9, 1250.0 45.0 C 1266.7 44.1, 1283.3 42.9, 1300.0 41.5 C 1316.7 40.1, 1333.3 38.5, 1350.0 37.0 C 1366.7 35.5, 1383.3 34.1, 1400.0 33.2 C 1416.7 32.3, 1433.3 31.8, 1450.0 32.0 C 1466.7 32.1, 1483.3 33.0, 1500.0 34.4 C 1516.7 35.8, 1533.3 37.7, 1550.0 39.9 C 1566.7 42.1, 1583.3 44.6, 1600.0 46.8 L1600 110 L0 110 Z" fill="#2a6a6e"/>
       </svg>
       <svg class="wave-layer-2" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 53 C200 14, 400 96, 800 48 C1000 10, 1200 90, 1600 48 L1600 110 L0 110 Z" fill="#35807a"/>
+        <path d="M 0 58.4 C 16.7 60.0, 33.3 61.5, 50.0 62.7 C 66.7 63.8, 83.3 64.6, 100.0 64.9 C 116.7 65.1, 133.3 64.8, 150.0 64.0 C 166.7 63.2, 183.3 61.9, 200.0 60.3 C 216.7 58.7, 233.3 56.9, 250.0 55.1 C 266.7 53.3, 283.3 51.6, 300.0 50.1 C 316.7 48.7, 333.3 47.6, 350.0 46.9 C 366.7 46.2, 383.3 45.8, 400.0 45.7 C 416.7 45.6, 433.3 45.8, 450.0 46.0 C 466.7 46.3, 483.3 46.6, 500.0 46.9 C 516.7 47.1, 533.3 47.3, 550.0 47.4 C 566.7 47.5, 583.3 47.5, 600.0 47.6 C 616.7 47.6, 633.3 47.8, 650.0 48.2 C 666.7 48.6, 683.3 49.2, 700.0 50.1 C 716.7 51.1, 733.3 52.3, 750.0 53.8 C 766.7 55.2, 783.3 56.9, 800.0 58.4 C 816.7 60.0, 833.3 61.5, 850.0 62.7 C 866.7 63.8, 883.3 64.6, 900.0 64.9 C 916.7 65.1, 933.3 64.8, 950.0 64.0 C 966.7 63.2, 983.3 61.9, 1000.0 60.3 C 1016.7 58.7, 1033.3 56.9, 1050.0 55.1 C 1066.7 53.3, 1083.3 51.6, 1100.0 50.1 C 1116.7 48.7, 1133.3 47.6, 1150.0 46.9 C 1166.7 46.2, 1183.3 45.8, 1200.0 45.7 C 1216.7 45.6, 1233.3 45.8, 1250.0 46.0 C 1266.7 46.3, 1283.3 46.6, 1300.0 46.9 C 1316.7 47.1, 1333.3 47.3, 1350.0 47.4 C 1366.7 47.5, 1383.3 47.5, 1400.0 47.6 C 1416.7 47.6, 1433.3 47.8, 1450.0 48.2 C 1466.7 48.6, 1483.3 49.2, 1500.0 50.1 C 1516.7 51.1, 1533.3 52.3, 1550.0 53.8 C 1566.7 55.2, 1583.3 56.9, 1600.0 58.4 L1600 110 L0 110 Z" fill="#35807a"/>
       </svg>
       <svg class="wave-layer-3" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 61 C200 22, 400 100, 800 58 C1000 18, 1200 94, 1600 58 L1600 110 L0 110 Z" fill="#4dbead"/>
+        <path d="M 0 60.6 C 16.7 62.2, 33.3 63.6, 50.0 64.6 C 66.7 65.5, 83.3 66.1, 100.0 66.4 C 116.7 66.8, 133.3 66.9, 150.0 67.0 C 166.7 67.0, 183.3 67.1, 200.0 67.4 C 216.7 67.6, 233.3 68.0, 250.0 68.4 C 266.7 68.9, 283.3 69.5, 300.0 69.9 C 316.7 70.4, 333.3 70.7, 350.0 70.6 C 366.7 70.5, 383.3 70.0, 400.0 69.0 C 416.7 68.0, 433.3 66.5, 450.0 64.6 C 466.7 62.6, 483.3 60.4, 500.0 58.0 C 516.7 55.7, 533.3 53.4, 550.0 51.4 C 566.7 49.5, 583.3 47.9, 600.0 47.0 C 616.7 46.2, 633.3 46.0, 650.0 46.4 C 666.7 46.9, 683.3 48.1, 700.0 49.6 C 716.7 51.1, 733.3 53.1, 750.0 55.0 C 766.7 57.0, 783.3 58.9, 800.0 60.6 C 816.7 62.2, 833.3 63.6, 850.0 64.6 C 866.7 65.5, 883.3 66.1, 900.0 66.4 C 916.7 66.8, 933.3 66.9, 950.0 67.0 C 966.7 67.0, 983.3 67.1, 1000.0 67.4 C 1016.7 67.6, 1033.3 68.0, 1050.0 68.4 C 1066.7 68.9, 1083.3 69.5, 1100.0 69.9 C 1116.7 70.4, 1133.3 70.7, 1150.0 70.6 C 1166.7 70.5, 1183.3 70.0, 1200.0 69.0 C 1216.7 68.0, 1233.3 66.5, 1250.0 64.6 C 1266.7 62.6, 1283.3 60.4, 1300.0 58.0 C 1316.7 55.7, 1333.3 53.4, 1350.0 51.4 C 1366.7 49.5, 1383.3 47.9, 1400.0 47.0 C 1416.7 46.2, 1433.3 46.0, 1450.0 46.4 C 1466.7 46.9, 1483.3 48.1, 1500.0 49.6 C 1516.7 51.1, 1533.3 53.1, 1550.0 55.0 C 1566.7 57.0, 1583.3 58.9, 1600.0 60.6 L1600 110 L0 110 Z" fill="#4dbead"/>
       </svg>
       <svg class="wave-layer-4" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 69 C200 30, 400 104, 800 66 C1000 26, 1200 98, 1600 66 L1600 110 L0 110 Z" fill="#256060"/>
+        <path d="M 0 77.3 C 16.7 77.8, 33.3 78.1, 50.0 78.0 C 66.7 77.9, 83.3 77.5, 100.0 76.6 C 116.7 75.8, 133.3 74.6, 150.0 73.2 C 166.7 71.8, 183.3 70.3, 200.0 68.7 C 216.7 67.1, 233.3 65.6, 250.0 64.3 C 266.7 63.0, 283.3 62.0, 300.0 61.4 C 316.7 60.7, 333.3 60.4, 350.0 60.4 C 366.7 60.5, 383.3 60.8, 400.0 61.3 C 416.7 61.8, 433.3 62.5, 450.0 63.2 C 466.7 63.9, 483.3 64.7, 500.0 65.3 C 516.7 66.0, 533.3 66.6, 550.0 67.1 C 566.7 67.7, 583.3 68.2, 600.0 68.7 C 616.7 69.2, 633.3 69.8, 650.0 70.4 C 666.7 71.1, 683.3 71.9, 700.0 72.7 C 716.7 73.5, 733.3 74.4, 750.0 75.2 C 766.7 76.0, 783.3 76.8, 800.0 77.3 C 816.7 77.8, 833.3 78.1, 850.0 78.0 C 866.7 77.9, 883.3 77.5, 900.0 76.6 C 916.7 75.8, 933.3 74.6, 950.0 73.2 C 966.7 71.8, 983.3 70.3, 1000.0 68.7 C 1016.7 67.1, 1033.3 65.6, 1050.0 64.3 C 1066.7 63.0, 1083.3 62.0, 1100.0 61.4 C 1116.7 60.7, 1133.3 60.4, 1150.0 60.4 C 1166.7 60.5, 1183.3 60.8, 1200.0 61.3 C 1216.7 61.8, 1233.3 62.5, 1250.0 63.2 C 1266.7 63.9, 1283.3 64.7, 1300.0 65.3 C 1316.7 66.0, 1333.3 66.6, 1350.0 67.1 C 1366.7 67.7, 1383.3 68.2, 1400.0 68.7 C 1416.7 69.2, 1433.3 69.8, 1450.0 70.4 C 1466.7 71.1, 1483.3 71.9, 1500.0 72.7 C 1516.7 73.5, 1533.3 74.4, 1550.0 75.2 C 1566.7 76.0, 1583.3 76.8, 1600.0 77.3 L1600 110 L0 110 Z" fill="#256060"/>
       </svg>
       <svg class="wave-layer-5" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 77 C200 40, 400 108, 800 74 C1000 36, 1200 102, 1600 74 L1600 110 L0 110 Z" fill="#4dbead"/>
+        <path d="M 0 69.9 C 16.7 70.9, 33.3 72.0, 50.0 72.9 C 66.7 73.9, 83.3 74.6, 100.0 75.3 C 116.7 75.9, 133.3 76.5, 150.0 77.0 C 166.7 77.5, 183.3 78.1, 200.0 78.7 C 216.7 79.4, 233.3 80.1, 250.0 81.1 C 266.7 82.0, 283.3 83.1, 300.0 84.1 C 316.7 85.2, 333.3 86.2, 350.0 87.0 C 366.7 87.8, 383.3 88.3, 400.0 88.4 C 416.7 88.4, 433.3 88.0, 450.0 87.1 C 466.7 86.1, 483.3 84.7, 500.0 82.9 C 516.7 81.2, 533.3 79.1, 550.0 77.0 C 566.7 74.9, 583.3 72.8, 600.0 71.1 C 616.7 69.3, 633.3 67.9, 650.0 66.9 C 666.7 66.0, 683.3 65.6, 700.0 65.6 C 716.7 65.7, 733.3 66.2, 750.0 67.0 C 766.7 67.8, 783.3 68.8, 800.0 69.9 C 816.7 70.9, 833.3 72.0, 850.0 72.9 C 866.7 73.9, 883.3 74.6, 900.0 75.3 C 916.7 75.9, 933.3 76.5, 950.0 77.0 C 966.7 77.5, 983.3 78.1, 1000.0 78.7 C 1016.7 79.4, 1033.3 80.1, 1050.0 81.1 C 1066.7 82.0, 1083.3 83.1, 1100.0 84.1 C 1116.7 85.2, 1133.3 86.2, 1150.0 87.0 C 1166.7 87.8, 1183.3 88.3, 1200.0 88.4 C 1216.7 88.4, 1233.3 88.0, 1250.0 87.1 C 1266.7 86.1, 1283.3 84.7, 1300.0 82.9 C 1316.7 81.2, 1333.3 79.1, 1350.0 77.0 C 1366.7 74.9, 1383.3 72.8, 1400.0 71.1 C 1416.7 69.3, 1433.3 67.9, 1450.0 66.9 C 1466.7 66.0, 1483.3 65.6, 1500.0 65.6 C 1516.7 65.7, 1533.3 66.2, 1550.0 67.0 C 1566.7 67.8, 1583.3 68.8, 1600.0 69.9 L1600 110 L0 110 Z" fill="#4dbead"/>
       </svg>
       <svg class="wave-layer-6" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 85 C200 50, 400 110, 800 82 C1000 46, 1200 108, 1600 82 L1600 110 L0 110 Z" fill="#122224"/>
+        <path d="M 0 88.8 C 16.7 88.5, 33.3 88.3, 50.0 88.0 C 66.7 87.7, 83.3 87.2, 100.0 86.6 C 116.7 86.0, 133.3 85.2, 150.0 84.3 C 166.7 83.4, 183.3 82.3, 200.0 81.2 C 216.7 80.2, 233.3 79.1, 250.0 78.2 C 266.7 77.4, 283.3 76.7, 300.0 76.4 C 316.7 76.1, 333.3 76.1, 350.0 76.6 C 366.7 77.0, 383.3 77.8, 400.0 78.9 C 416.7 79.9, 433.3 81.3, 450.0 82.6 C 466.7 84.0, 483.3 85.4, 500.0 86.6 C 516.7 87.8, 533.3 88.9, 550.0 89.7 C 566.7 90.4, 583.3 90.9, 600.0 91.1 C 616.7 91.3, 633.3 91.3, 650.0 91.2 C 666.7 91.0, 683.3 90.7, 700.0 90.4 C 716.7 90.1, 733.3 89.8, 750.0 89.5 C 766.7 89.2, 783.3 89.0, 800.0 88.8 C 816.7 88.5, 833.3 88.3, 850.0 88.0 C 866.7 87.7, 883.3 87.2, 900.0 86.6 C 916.7 86.0, 933.3 85.2, 950.0 84.3 C 966.7 83.4, 983.3 82.3, 1000.0 81.2 C 1016.7 80.2, 1033.3 79.1, 1050.0 78.2 C 1066.7 77.4, 1083.3 76.7, 1100.0 76.4 C 1116.7 76.1, 1133.3 76.1, 1150.0 76.6 C 1166.7 77.0, 1183.3 77.8, 1200.0 78.9 C 1216.7 79.9, 1233.3 81.3, 1250.0 82.6 C 1266.7 84.0, 1283.3 85.4, 1300.0 86.6 C 1316.7 87.8, 1333.3 88.9, 1350.0 89.7 C 1366.7 90.4, 1383.3 90.9, 1400.0 91.1 C 1416.7 91.3, 1433.3 91.3, 1450.0 91.2 C 1466.7 91.0, 1483.3 90.7, 1500.0 90.4 C 1516.7 90.1, 1533.3 89.8, 1550.0 89.5 C 1566.7 89.2, 1583.3 89.0, 1600.0 88.8 L1600 110 L0 110 Z" fill="#122224"/>
       </svg>
     </div>
   </section>
@@ -1781,16 +1794,8 @@
       <div class="gallery-item reveal"><img src="images/Untitled 4.png" alt="Subsurface analysis" width="442" height="253" loading="lazy" decoding="async"></div>
       <div class="gallery-item reveal"><img src="images/Untitled 5.png" alt="Water source development" width="627" height="387" loading="lazy" decoding="async"></div>
     </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-grid">
-      <div class="contact-intro">
-        <h2 class="section-title" data-i18n="contact.title">Contact</h2>
-        <p class="section-body" data-i18n="contact.body">Whether you have an active requirement or want to discuss a future project, our team is ready to help.</p>
-
-        <div class="contact-detail">
+    <div style="margin-top: 40px; display: flex; justify-content: center;">
+      <div class="contact-detail">
           <div class="contact-item">
             <div class="contact-item-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1815,61 +1820,9 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <form action="https://formsubmit.co/lars.falk@maxilium.se" method="POST">
-        <input type="hidden" name="_subject" value="New Maxilium Groundwater enquiry">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://j123-collab.github.io/grundvatten-geological/?submitted=1">
-        <div class="trust-strip">
-          <div class="trust-item">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            <span>Encrypted transmission</span>
-          </div>
-          <div class="trust-item">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>GDPR compliant</span>
-          </div>
-          <div class="trust-item">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <span>SAPO-vetted handling</span>
-          </div>
-        </div>
-        <div class="field">
-          <label for="name" data-i18n="f.name">Full name</label>
-          <input type="text" id="name" name="name" data-i18n-ph="f.name.ph" placeholder="Cpl. J. Smith" required>
-        </div>
-        <div class="field">
-          <label for="org" data-i18n="f.org">Organisation</label>
-          <input type="text" id="org" name="org" data-i18n-ph="f.org.ph" placeholder="Unit or agency">
-        </div>
-        <div class="field">
-          <label for="email" data-i18n="f.email">Email</label>
-          <input type="email" id="email" name="email" data-i18n-ph="f.email.ph" placeholder="you@example.com" required>
-        </div>
-        <div class="field">
-          <label for="service" data-i18n="f.service">Service required</label>
-          <select id="service" name="service">
-            <option value="" data-i18n="f.svc.default">Select a service…</option>
-            <option data-i18n="f.svc.1">Groundwater assessment</option>
-            <option data-i18n="f.svc.2">Water source development</option>
-            <option data-i18n="f.svc.3">Contamination survey</option>
-            <option data-i18n="f.svc.4">Infrastructure planning</option>
-            <option data-i18n="f.svc.5">General enquiry</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="message" data-i18n="f.message">Message</label>
-          <textarea id="message" name="message" data-i18n-ph="f.msg.ph" placeholder="Brief description of your requirement…" required></textarea>
-        </div>
-        <button type="submit" class="btn-submit" data-i18n="f.submit">Send message</button>
-        <div class="form-success" id="mobile-form-success" role="status" aria-live="polite">
-          <h3 data-i18n="f.success.title">Request Submitted</h3>
-          <p data-i18n="f.success.msg">Your briefing request has been received. You will be contacted through secure channels.</p>
-        </div>
-      </form>
     </div>
   </section>
+
 
   <footer>
     <div class="footer-logo">Maxilium <span>Groundwater</span></div>
@@ -2007,7 +1960,7 @@
             <span class="hero-est__text" data-i18n="statusOp">OPERATIONAL</span>
           </div>
           <h1 class="hero-title">MAXILIUM<br><span class="hero-title--accent">GROUNDWATER</span></h1>
-          <p class="hero-tagline">Strategic Groundwater Reserves &mdash; Scandinavia</p>
+          <p class="hero-tagline" data-i18n="heroTagline">Development of Groundwater Sources &mdash; Scandinavia</p>
           <div class="hero-meta">
             <span class="hero-meta__item">
               <span class="hero-meta__label">Est.</span>
@@ -2024,8 +1977,7 @@
           </div>
           <nav class="hero-nav" aria-label="Desktop hero navigation">
             <button type="button" class="hero-nav__link" data-goto="1" data-i18n="navAbout">About</button>
-            <button type="button" class="hero-nav__link" data-goto="3" data-i18n="navContact">Contact</button>
-          </nav>
+                      </nav>
         </div><!-- /.hero-text -->
       </div><!-- /.hero-columns -->
     </div>
@@ -2077,53 +2029,9 @@
         <div class="gallery-item"><img src="images/Untitled 4.png" alt="Subsurface analysis" width="442" height="253" loading="lazy" decoding="async"></div>
         <div class="gallery-item"><img src="images/Untitled 5.png" alt="Water source development" width="627" height="387" loading="lazy" decoding="async"></div>
       </div>
-    </div>
-  </section>
+        <!-- Company Info -->
 
-  <!-- STRATUM 3: CONTACT -->
-  <section class="stratum stratum--2" id="d-contact">
-    <div class="stratum__content">
-      <div class="d-contact-grid">
-
-        <!-- LEFT: heading + form -->
-        <div class="d-contact-left">
-          <h2 class="section-heading__title" data-i18n="contactTitle">Contact</h2>
-          <p class="d-contact-body" data-i18n="contactBody">Whether you have an active requirement or want to discuss a future project, our team is ready to help.</p>
-
-          <form id="contactForm" class="d-contact-form" action="https://formsubmit.co/lars.falk@maxilium.se" method="POST" novalidate>
-            <input type="hidden" name="_subject" value="New Maxilium Groundwater enquiry">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://j123-collab.github.io/grundvatten-geological/?submitted=1">
-            <div class="field">
-              <label for="formName" data-i18n="formName">Full name</label>
-              <input class="form-input" type="text" id="formName" name="name" required aria-describedby="formNameError" data-i18n-placeholder="formNamePh" placeholder="Cpl. J. Smith">
-              <span class="form-error" id="formNameError" data-i18n="formNameError">Name is required</span>
-            </div>
-            <div class="field">
-              <label for="formOrg" data-i18n="formOrg">Organisation</label>
-              <input class="form-input" type="text" id="formOrg" name="org" required aria-describedby="formOrgError" data-i18n-placeholder="formOrgPh" placeholder="Unit or agency">
-              <span class="form-error" id="formOrgError" data-i18n="formOrgError">Organisation is required</span>
-            </div>
-            <div class="field">
-              <label for="formEmail" data-i18n="formEmail">Email</label>
-              <input class="form-input" type="email" id="formEmail" name="email" required aria-describedby="formEmailError" data-i18n-placeholder="formEmailPh" placeholder="you@example.com">
-              <span class="form-error" id="formEmailError" data-i18n="formEmailError">Valid email is required</span>
-            </div>
-            <div class="field">
-              <label for="formMsg" data-i18n="formMsg">Message</label>
-              <textarea class="form-input form-textarea" id="formMsg" name="message" required aria-describedby="formMsgError" data-i18n-placeholder="formMsgPh" placeholder="Brief description of your requirement…"></textarea>
-              <span class="form-error" id="formMsgError" data-i18n="formMsgError">Message is required</span>
-            </div>
-            <button class="btn-submit d-btn-submit" type="submit" data-i18n="formSubmit">Send message</button>
-            <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-              <h3 data-i18n="formSuccessTitle">Request Submitted</h3>
-              <p data-i18n="formSuccessMsg">Your briefing request has been received. You will be contacted through secure channels.</p>
-            </div>
-          </form>
-        </div>
-
-        <!-- RIGHT: company info -->
-        <div class="d-contact-right">
+        <div class="d-company-info">
           <div class="contact-detail">
             <div class="contact-item">
               <div class="contact-item-icon">
@@ -2157,19 +2065,17 @@
             <p class="d-company-line d-company-legal">Ölmevägen 17, SE-123 32 Farsta, Stockholm</p>
             <p class="d-company-line d-company-legal">Filial: Övre Hantverksgatan 32A, Östersund</p>
           </div>
-        </div>
-
+        
       </div>
-    </div>
   </section>
+
 
   <!-- Navigation dots -->
   <nav class="nav-dots" aria-label="Desktop depth navigation">
     <button type="button" class="nav-dot active" data-index="0" aria-label="Hero"></button>
     <button type="button" class="nav-dot" data-index="1" aria-label="About"></button>
     <button type="button" class="nav-dot" data-index="2" aria-label="Gallery"></button>
-    <button type="button" class="nav-dot" data-index="3" aria-label="Contact"></button>
-  </nav>
+      </nav>
 
   <!-- Fixed wave overlay -->
   <div class="wave-overlay" aria-hidden="true">
@@ -2211,7 +2117,7 @@ if (window.innerWidth < 768) {
       'nav.contact': 'Contact',
       'hero.tag': 'Status · Operational',
       'hero.title': 'Water, secured.<br><em>Wherever</em> it matters.',
-      'hero.sub': 'Strategic Groundwater Reserves — Scandinavia',
+      'hero.sub': 'Development of Groundwater Sources — Scandinavia',
       'hero.sub2': 'Development and action plan for securing groundwater resources — for the establishment of groundwater sources 2025–2030.',
       'about.label': 'About us',
       'about.title': 'Built for the most<br>demanding environments',
@@ -2254,7 +2160,7 @@ if (window.innerWidth < 768) {
       'nav.contact': 'Kontakt',
       'hero.tag': 'Status · Operativ',
       'hero.title': 'Vatten, säkrat.<br><em>Var det än</em> behövs.',
-      'hero.sub': 'Strategiska grundvattenreserver — Skandinavien',
+      'hero.sub': 'Utveckling av grundvattentäkter — Skandinavien',
       'hero.sub2': 'Utvecklings- och handlingsplan för säkerställande av grundvattenresurser — för etablering av grundvattentäkter år 2025–2030.',
       'about.label': 'Om oss',
       'about.title': 'Byggd för de mest<br>krävande miljöerna',
@@ -2293,11 +2199,12 @@ if (window.innerWidth < 768) {
     }
   };
 
-  let currentLang = localStorage.getItem('lang') || 'sv';
+  let currentLang;
+  try { currentLang = localStorage.getItem('lang') || 'sv'; } catch (e) { currentLang = 'sv'; }
 
   function applyLang(lang) {
     currentLang = lang;
-    localStorage.setItem('lang', lang);
+    try { localStorage.setItem('lang', lang); } catch (e) {}
     document.documentElement.lang = lang;
     const dict = T[lang];
 
@@ -2344,39 +2251,7 @@ if (window.innerWidth < 768) {
     }
   })();
 
-  const mobileForm = document.querySelector('#mobile-root form');
-  const mobileSuccess = document.getElementById('mobile-form-success');
-  const mobileSubmitted = new URLSearchParams(window.location.search).get('submitted') === '1';
-  if (mobileForm) {
-    mobileForm.addEventListener('submit', handleSubmit);
-  }
 
-  function markMobileSubmitted() {
-    const btn = mobileForm ? mobileForm.querySelector('.btn-submit') : null;
-    if (!btn) return;
-    btn.textContent = currentLang === 'sv' ? 'Meddelande skickat ✓' : 'Message sent ✓';
-    btn.classList.add('sent');
-    btn.disabled = true;
-    if (mobileSuccess) mobileSuccess.classList.add('visible');
-  }
-
-  function handleSubmit(e) {
-    const btn = e.target.querySelector('.btn-submit');
-    if (!btn) return;
-    btn.textContent = currentLang === 'sv' ? 'Skickar…' : 'Sending…';
-    btn.disabled = true;
-  }
-
-  if (mobileSubmitted && mobileForm) {
-    markMobileSubmitted();
-    requestAnimationFrame(() => {
-      const contact = document.getElementById('contact');
-      if (contact) contact.scrollIntoView({ block: 'start' });
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, document.title, window.location.pathname);
-      }
-    });
-  }
 
   // Scroll reveal
   const revealObs = new IntersectionObserver((entries) => {
@@ -2468,6 +2343,7 @@ if (window.innerWidth >= 768) {
       navStatus: "Status",
       navAbout: "About",
       navContact: "Contact",
+      heroTagline: "Development of Groundwater Sources \u2014 Scandinavia",
       aboutTitle: "About",
       aboutLead: "Development and action plan for securing groundwater resources. And for the establishment of groundwater sources 2025–2027.",
       aboutP1: "My name is Lars Falk. My colleagues and I have, over almost three decades (founded 1992), developed a programme and business concept for locating and evaluating suitable land areas to establish wells, and to produce and secure drinking water from groundwater sources in Scandinavia.",
@@ -2516,6 +2392,7 @@ if (window.innerWidth >= 768) {
       navStatus: "Status",
       navAbout: "Om",
       navContact: "Kontakt",
+      heroTagline: "Utveckling av grundvattentäkter \u2014 Skandinavien",
       aboutTitle: "Om oss",
       aboutLead: "Utveckling- och handlingsplan för säkerställande av grundvattenresurser. Och för etablering av grundvattentäkter år 2025–2027.",
       aboutP1: "Mitt namn är Lars Falk. Jag och mina kollegor har under dryg tre decennier (uppstart 1992) utvecklat ett program och ett affärskoncept för att lokalisera och utvärdera ett lämpligt markområde för att etablera brunnar, producera och säkerställa dricksvatten från grundvattentäkter i Skandinavien.",
@@ -2564,10 +2441,7 @@ if (window.innerWidth >= 768) {
 
     var desktopRoot = document.getElementById('desktop-root');
     var currentLang = localStorage.getItem('lang') || 'sv';
-    var formWasSubmitted = new URLSearchParams(window.location.search).get('submitted') === '1';
     var langButtons = desktopRoot.querySelectorAll('#langToggle .lang-btn');
-    var contactForm = desktopRoot.querySelector('#contactForm');
-    var successBox = desktopRoot.querySelector('#formSuccess');
 
     // ---- Section Navigation (snap-scroll) ----
     var strata = Array.from(desktopRoot.querySelectorAll('.stratum'));
@@ -2577,10 +2451,9 @@ if (window.innerWidth >= 768) {
     var transitioning = false;
 
     var depthValues = [
-      [0,  5,  10,  15,  20],
-      [20, 40,  60,  80, 100],
-      [35, 70, 105, 140, 175],
-      [50, 100, 150, 200, 250]
+      [0, 5, 10, 15, 20],
+      [20, 40, 60, 80, 100],
+      [35, 70, 105, 140, 175]
     ];
     var currentDepths = [0, 5, 10, 15, 20];
     var depthAnims = [null, null, null, null, null];
@@ -2708,8 +2581,8 @@ if (window.innerWidth >= 768) {
         btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
       });
       document.title = lang === 'sv'
-        ? 'Maxilium Grundvatten — Strategiska grundvattenreserver'
-        : 'Maxilium Groundwater — Strategic Groundwater Reserves';
+        ? 'Maxilium Grundvatten — Utveckling av grundvattentäkter'
+        : 'Maxilium Groundwater — Development of Groundwater Sources';
     }
 
     langButtons.forEach(function (btn) {
@@ -2719,76 +2592,7 @@ if (window.innerWidth >= 768) {
       });
     });
 
-    // ---- Contact Form ----
-    function showFormSuccess() {
-      contactForm.querySelectorAll('.field, .btn-submit').forEach(function (el) {
-        el.style.display = 'none';
-      });
-      if (successBox) successBox.classList.add('visible');
-    }
-
-    if (contactForm) {
-      contactForm.addEventListener('submit', function (e) {
-        var valid = true;
-
-        contactForm.querySelectorAll('.form-error').forEach(function (el) { el.classList.remove('visible'); });
-        contactForm.querySelectorAll('.form-input').forEach(function (el) {
-          el.classList.remove('error');
-          el.setAttribute('aria-invalid', 'false');
-        });
-
-        var nameInput = contactForm.querySelector('#formName');
-        if (!nameInput.value.trim()) {
-          valid = false;
-          nameInput.classList.add('error');
-          nameInput.setAttribute('aria-invalid', 'true');
-          nameInput.parentElement.querySelector('.form-error').classList.add('visible');
-        }
-        var orgInput = contactForm.querySelector('#formOrg');
-        if (!orgInput.value.trim()) {
-          valid = false;
-          orgInput.classList.add('error');
-          orgInput.setAttribute('aria-invalid', 'true');
-          orgInput.parentElement.querySelector('.form-error').classList.add('visible');
-        }
-        var emailInput = contactForm.querySelector('#formEmail');
-        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailInput.value.trim() || !emailPattern.test(emailInput.value.trim())) {
-          valid = false;
-          emailInput.classList.add('error');
-          emailInput.setAttribute('aria-invalid', 'true');
-          emailInput.parentElement.querySelector('.form-error').classList.add('visible');
-        }
-
-        var msgInput = contactForm.querySelector('#formMsg');
-        if (!msgInput.value.trim()) {
-          valid = false;
-          msgInput.classList.add('error');
-          msgInput.setAttribute('aria-invalid', 'true');
-          msgInput.parentElement.querySelector('.form-error').classList.add('visible');
-        }
-
-        if (!valid) {
-          e.preventDefault();
-          return;
-        }
-
-        var submitBtn = contactForm.querySelector('.btn-submit');
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = currentLang === 'sv' ? 'Skickar…' : 'Sending…';
-        }
-      });
-    }
-
     setLanguage(currentLang);
-    if (formWasSubmitted && contactForm) {
-      goTo(2);
-      showFormSuccess();
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, document.title, window.location.pathname);
-      }
-    }
 
     // ---- Country Cycling ----
     var mapCountries = ['se', 'no', 'fi'];
@@ -2843,12 +2647,12 @@ if (window.innerWidth >= 768) {
     var waveOverlay = desktopRoot.querySelector('.wave-overlay');
     var wavePaths = Array.from(desktopRoot.querySelectorAll('.wave-layer'));
     var layers = [
-      { baseY: 50, amp: 7,  lift: 6,  speed: 0.25, phase: 0 },
-      { baseY: 58, amp: 8,  lift: 9,  speed: 0.35, phase: 0.8 },
-      { baseY: 66, amp: 6,  lift: 12, speed: 0.45, phase: 1.6 },
-      { baseY: 74, amp: 7,  lift: 16, speed: 0.3,  phase: 2.4 },
-      { baseY: 82, amp: 5,  lift: 20, speed: 0.5,  phase: 3.2 },
-      { baseY: 90, amp: 4,  lift: 24, speed: 0.38, phase: 4.0 }
+      { baseY: 50, amp: 7,  lift: 6,  speed: 1.2, phase: 0 },
+      { baseY: 58, amp: 8,  lift: 9,  speed: 1.6, phase: 0.8 },
+      { baseY: 66, amp: 6,  lift: 12, speed: 2.1, phase: 1.6 },
+      { baseY: 74, amp: 7,  lift: 16, speed: 1.4, phase: 2.4 },
+      { baseY: 82, amp: 5,  lift: 20, speed: 2.3, phase: 3.2 },
+      { baseY: 90, amp: 4,  lift: 24, speed: 1.8, phase: 4.0 }
     ];
 
     var mouseX = 0.5;
