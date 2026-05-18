@@ -184,7 +184,7 @@
        ══════════════════════════════════════════════ */
 
     /* ---------- Reset & Base ---------- */
-    html, body { background: #131920; margin: 0; padding: 0; }
+    html, body { background: #131920; margin: 0; padding: 0; overflow-x: hidden; max-width: 100vw; }
 
     #desktop-root *, #desktop-root *::before, #desktop-root *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1038,6 +1038,8 @@
         position: static;
         height: auto;
         overflow: visible;
+        width: 100%;
+        max-width: 100vw;
       }
       
       #desktop-root .stratum {
@@ -1045,7 +1047,9 @@
         opacity: 1;
         pointer-events: auto;
         height: auto;
-        overflow: visible;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100vw;
         border-bottom: 1px solid rgba(255,255,255,0.1);
       }
       
