@@ -1524,56 +1524,6 @@ if (window.innerWidth < 768) {
 
 
 
-  // Lightbox
-  (function() {
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox) return;
-    const lbImg    = document.getElementById('lightbox-img');
-    const allImgs  = Array.from(document.querySelectorAll('.gallery-item img'));
-    const srcs     = [];
-    const seen     = new Set();
-    allImgs.forEach(function(img) {
-      if (!seen.has(img.src)) { seen.add(img.src); srcs.push(img.src); }
-    });
-    let current = 0;
-
-    function open(src) {
-      current = srcs.indexOf(src);
-      if (current < 0) current = 0;
-      lbImg.src = srcs[current];
-      lightbox.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function close() {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    function go(dir) {
-      current = (current + dir + srcs.length) % srcs.length;
-      lbImg.src = srcs[current];
-    }
-
-    allImgs.forEach(function(img) {
-      img.parentElement.style.cursor = 'pointer';
-      img.parentElement.addEventListener('click', function() { open(img.src); });
-    });
-
-    document.getElementById('lightbox-close').addEventListener('click', close);
-    document.getElementById('lightbox-prev').addEventListener('click', function() { go(-1); });
-    document.getElementById('lightbox-next').addEventListener('click', function() { go(1); });
-
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) close(); });
-
-    document.addEventListener('keydown', function(e) {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') go(-1);
-      if (e.key === 'ArrowRight') go(1);
-    });
-  })();
-
 
 }
 
@@ -1843,7 +1793,70 @@ if (window.innerWidth >= 768) {
   if (!reduceMotion) requestAnimationFrame(animateWaves);
 
 } // if (window.innerWidth >= 768)
+
+// ── LIGHTBOX (shared, works on all viewports) ──
+(function () {
+  function initLightbox() {
+  var lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+  var lbImg  = document.getElementById('lightbox-img');
+  var allImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+  var srcs = [];
+  var seen = new Set();
+  allImgs.forEach(function (img) {
+    var s = img.src;
+    if (!seen.has(s)) { seen.add(s); srcs.push(s); }
+  });
+  var current = 0;
+
+  function open(src) {
+    current = srcs.indexOf(src);
+    if (current < 0) current = 0;
+    lbImg.src = srcs[current];
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function go(dir) {
+    current = (current + dir + srcs.length) % srcs.length;
+    lbImg.src = srcs[current];
+  }
+
+  allImgs.forEach(function (img) {
+    img.parentElement.style.cursor = 'pointer';
+    img.parentElement.addEventListener('click', function () { open(img.src); });
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', close);
+  document.getElementById('lightbox-prev').addEventListener('click', function () { go(-1); });
+  document.getElementById('lightbox-next').addEventListener('click', function () { go(1); });
+  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') go(-1);
+    if (e.key === 'ArrowRight') go(1);
+  });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLightbox);
+  } else {
+    initLightbox();
+  }
+})();
+
 </script>
+
+<!-- Lightbox overlay -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+  <button id="lightbox-close" class="lightbox-close" aria-label="Close">&#x2715;</button>
+  <button id="lightbox-prev" class="lightbox-prev" aria-label="Previous">&#8592;</button>
+  <img id="lightbox-img" src="" alt="Enlarged image">
+  <button id="lightbox-next" class="lightbox-next" aria-label="Next">&#8594;</button>
+</div>
 
 </body>
 </html>
