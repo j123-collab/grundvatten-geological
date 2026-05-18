@@ -1405,6 +1405,35 @@
     }
     #desktop-root .d-company-info {
       flex: 0 0 clamp(250px, 25vw, 320px);
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    #desktop-root .d-company-card.company-filler-top {
+      flex: 1;
+      min-height: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+    }
+    #desktop-root .d-company-card.company-info-mid {
+      flex: 0 0 auto;
+    }
+    #desktop-root .d-company-card.company-logo-bottom {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px;
+    }
+    #desktop-root .company-logo-img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      margin: 0;
+      display: block;
     }
 /* ---------- Desktop Contact Two-Column ---------- */
     #desktop-root .d-contact-grid {
@@ -1460,13 +1489,7 @@
     #desktop-root .d-contact-form .btn-submit:active { background: var(--rust-hover); transform: scale(0.98); }
     #desktop-root .d-contact-right .trust-strip { flex-wrap: wrap; margin-bottom: 20px; }
 
-    .company-logo-img {
-      width: 100%;
-      max-width: 250px;
-      height: auto;
-      margin: 0 auto 20px;
-      display: block;
-    }
+
     #desktop-root .d-company-card {
       margin-top: 28px;
       padding: 18px 20px;
@@ -2008,17 +2031,23 @@
         <!-- Company Info -->
 
         <div class="d-company-info">
-          <img src="images/logo.png" alt="Maxilium Logo" class="company-logo-img">
+          <!-- Filler: stretches to align top edge with image grid top -->
+          <div class="d-company-card company-filler-top"></div>
 
-          <div class="d-company-card">
+          <!-- Company info: compact, natural height -->
+          <div class="d-company-card company-info-mid">
             <p class="d-company-line d-company-copy">&copy; 2026 Maxilium Groundwater. All rights reserved.</p>
             <p class="d-company-line d-company-tag">Specialist Military Groundwater Services</p>
             <p class="d-company-line d-company-legal">Org.nr: 195805068250 &nbsp;&middot;&nbsp; F-skatt 2026</p>
             <p class="d-company-line d-company-legal">Ölmevägen 17, SE-123 32 Farsta, Stockholm</p>
             <p class="d-company-line d-company-legal">Filial: Övre Hantverksgatan 32A, Östersund</p>
           </div>
-        
-      </div>
+
+          <!-- Logo: at the bottom in matching styled box -->
+          <div class="d-company-card company-logo-bottom">
+            <img src="images/logo.png" alt="Maxilium Logo" class="company-logo-img">
+          </div>
+        </div>
   </section>
 
 
