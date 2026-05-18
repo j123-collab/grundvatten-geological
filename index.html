@@ -713,6 +713,7 @@
     }
 
     .gallery-item {
+      max-height: clamp(150px, 25vh, 300px);
       border-radius: 12px;
       overflow: hidden;
       aspect-ratio: 4/3;
@@ -795,7 +796,7 @@
     @media (min-width: 600px) {
       #mobile-root .contact-grid {
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center; max-height: 80vh;
         gap: var(--space-2xl);
       }
 
@@ -901,8 +902,7 @@
       inset: 0;
       width: 100%;
       height: 100vh;
-      overflow-y: auto;
-      overflow-x: hidden;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -921,7 +921,7 @@
       z-index: 1;
       max-width: clamp(900px, 85vw, 1280px);
       margin: 0 auto;
-      padding: clamp(40px, 6vw, 80px) clamp(16px, 2.5vw, 32px) clamp(80px, 10vw, 140px) clamp(44px, 5vw, 72px);
+      padding: clamp(20px, 4vh, 80px) clamp(16px, 2.5vw, 32px) clamp(60px, 10vh, 140px) clamp(44px, 5vw, 72px);
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.5s ease-out 0.15s, transform 0.5s ease-out 0.15s;
@@ -1302,15 +1302,16 @@
     #desktop-root .about-grid {
       display: grid;
       grid-template-columns: 1fr clamp(200px, 18vw, 240px);
-      gap: clamp(24px, 3vw, 48px);
-      margin-bottom: 36px;
+      gap: clamp(16px, 3vw, 48px);
+      margin-bottom: clamp(10px, 2vh, 36px);
     }
 
-    #desktop-root .about-text p { font-size: 0.9rem; }
+    #desktop-root .about-text p { font-size: clamp(0.75rem, 1.8vh, 0.95rem); margin-bottom: clamp(6px, 1.5vh, 16px); }
     #desktop-root .about-lead {
       font-style: italic;
       opacity: 0.95;
-      margin-bottom: clamp(14px, 1.4vw, 22px);
+      margin-bottom: clamp(10px, 2vh, 22px);
+      font-size: clamp(0.9rem, 2.2vh, 1.1rem);
     }
 
     #desktop-root .about-sidebar { display: flex; flex-direction: column; gap: clamp(12px, 1.5vw, 20px); }
@@ -1319,13 +1320,13 @@
       background: rgba(10, 24, 46, 0.5);
       border: 1px solid rgba(74, 118, 178, 0.12);
       border-radius: 6px;
-      padding: clamp(12px, 1.5vw, 20px);
+      padding: clamp(8px, 1.5vh, 20px);
     }
 
     #desktop-root .fact-card__value {
       display: block;
       font-family: var(--font-mono);
-      font-size: clamp(1.4rem, 1.8vw, 2rem);
+      font-size: clamp(1.2rem, 3vh, 2rem);
       font-weight: 700;
       color: var(--clay);
       line-height: 1;
@@ -1398,7 +1399,7 @@
     #desktop-root .d-gallery-content {
       display: flex;
       gap: 40px;
-      align-items: flex-start;
+      align-items: center; max-height: 80vh;
     }
     #desktop-root .d-gallery-content .gallery-grid {
       flex: 1 1 0;
@@ -1411,7 +1412,7 @@
     #desktop-root .d-contact-grid {
       display: flex;
       gap: clamp(40px, 6vw, 100px);
-      align-items: flex-start;
+      align-items: center; max-height: 80vh;
     }
     #desktop-root .d-contact-left {
       flex: 1 1 0;
@@ -1624,7 +1625,7 @@
 
       #desktop-root .section-heading {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; max-height: 80vh;
         gap: 8px;
       }
 
@@ -1645,7 +1646,8 @@
       #desktop-root .bubble { animation: none; display: none; }
       .reveal { transition: none; }
       .stratum, .stratum__content { transition-duration: 0.15s !important; }
-      .gallery-item { transition: none; }
+      .gallery-item {
+      max-height: clamp(150px, 25vh, 300px); transition: none; }
       .btn-submit { transition: none; }
     }
 
@@ -2521,13 +2523,7 @@ if (window.innerWidth >= 768) {
 
     document.addEventListener('wheel', function (e) {
       var activeStratum = strata[currentIndex];
-      var scrollable = activeStratum.scrollHeight > activeStratum.clientHeight;
-      if (scrollable) {
-        var atTop    = activeStratum.scrollTop <= 0;
-        var atBottom = activeStratum.scrollTop + activeStratum.clientHeight >= activeStratum.scrollHeight - 2;
-        if (e.deltaY < 0 && !atTop)    return;
-        if (e.deltaY > 0 && !atBottom) return;
-      }
+
       e.preventDefault();
       if (transitioning) { wheelAccum = 0; return; }
       wheelAccum += Math.max(-50, Math.min(50, e.deltaY));
