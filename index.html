@@ -927,18 +927,6 @@
       transition: opacity 0.5s ease-out 0.15s, transform 0.5s ease-out 0.15s;
     }
 
-    /* Gallery stratum: make content fill the full stratum height */
-    #desktop-root .stratum--gallery {
-      display: flex;
-      flex-direction: column;
-    }
-    #desktop-root .stratum--gallery .stratum__content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
     #desktop-root .stratum.active .stratum__content {
       opacity: 1;
       transform: translateY(0);
@@ -1410,8 +1398,7 @@
       display: flex;
       gap: 40px;
       align-items: stretch;
-      flex: 1;
-      min-height: 0;
+      max-height: 80vh;
     }
     #desktop-root .d-gallery-content .gallery-grid {
       flex: 1 1 0;
