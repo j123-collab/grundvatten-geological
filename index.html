@@ -1091,9 +1091,7 @@
       gap: 20px;
     }
 
-    #desktop-root .hero-lang {
-      align-self: flex-start;
-    }
+
 
     #desktop-root .lang-toggle {
       display: flex;
@@ -1597,13 +1595,7 @@
 
       #desktop-root .nav-dots { display: none; }
 
-      #desktop-root .hero-lang {
-        position: fixed;
-        top: calc(env(safe-area-inset-top, 0px) + 12px);
-        left: 12px;
-        z-index: 55;
-        align-self: auto;
-      }
+
 
       #desktop-root .lang-toggle {
         background: #1a2e44;
@@ -1934,12 +1926,7 @@
         </div>
         <!-- Text column (right) -->
         <div class="hero-text">
-          <div class="hero-lang">
-            <div id="langToggle" class="lang-toggle">
-              <button type="button" class="lang-btn" data-lang="en">EN</button>
-              <button type="button" class="lang-btn active" data-lang="sv">SV</button>
-            </div>
-          </div>
+
           <div class="hero-est">
             <span class="hero-est__label" data-i18n="navStatus">Status</span>
             <span class="hero-est__dot"></span>
@@ -1962,8 +1949,11 @@
             </span>
           </div>
           <nav class="hero-nav" aria-label="Desktop hero navigation">
-            <button type="button" class="hero-nav__link" data-goto="1" data-i18n="navAbout">About</button>
-                      </nav>
+            <div id="langToggle" class="lang-toggle">
+              <button type="button" class="lang-btn" data-lang="en">EN</button>
+              <button type="button" class="lang-btn active" data-lang="sv">SV</button>
+            </div>
+          </nav>
         </div><!-- /.hero-text -->
       </div><!-- /.hero-columns -->
     </div>
