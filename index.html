@@ -17,73 +17,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Playfair+Display:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
-    /* ─── ROOT SWITCHER ─── */
-    #desktop-root { display: none; }
-    @media (min-width: 768px) {
-      #mobile-root  { display: none !important; }
-      #desktop-root { display: block; }
-    }
+    #desktop-root { display: block; }
 
-    /* ══════════════════════════════════════════════
-       MOBILE CSS
-       ══════════════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      /* colours */
-      --black:        #0d0d0d;
-      --white:        #ffffff;
-      --accent:       #1a6b5a;
-      --accent-light: #2a9d7f;
-      --mid-grey:     #6b7280;
-      --rust:         #e0612e;
-      --clay:         #e8b070;
-      --green-glow:   #4ade80;
-      --royal-blue:   #4169e1;
-      /* ocean gradient stops */
-      --ocean-start:  #4a88bb;
-      --ocean-end:    #1f2630;
-      /* typography scale */
-      --text-xs:   11px;
-      --text-sm:   12px;
-      --text-base: 15px;
-      --text-md:   16px;
-      --text-lg:   18px;
-      --text-xl:   22px;
-      /* spacing scale */
-      --space-xs:  8px;
-      --space-sm:  16px;
-      --space-md:  24px;
-      --space-lg:  32px;
-      --space-xl:  48px;
-      --space-2xl: 64px;
-      --space-3xl: 96px;
-      /* layout */
-      --section-pad: var(--space-3xl) var(--space-md);
-      --max-w: 720px;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Barlow Condensed', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #122224;
-      color: var(--black);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── NAV ── */
-    #mobile-root nav {
+    /* Mobile Header */
+    .mobile-only-header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 1000;
       background: #1f2630;
       border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding: 0 var(--space-md);
+      padding: 0 16px;
       height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      display: none;
     }
 
     .nav-logo {
@@ -91,208 +39,13 @@
       font-size: 22px;
       font-weight: 400;
       letter-spacing: 2px;
-      color: var(--royal-blue);
+      color: #4169e1; /* Replaced var(--royal-blue) with hardcoded value */
       text-decoration: none;
     }
 
-    .nav-logo span { color: var(--rust); }
+    .nav-logo span { color: #e0612e; /* Replaced var(--rust) with hardcoded value */ }
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: var(--text-base);
-      font-weight: 500;
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      letter-spacing: 0.1px;
-      white-space: nowrap;
-    }
-
-    .nav-links a:hover { color: var(--white); }
-
-    /* ── MAP ANIMATION ── */
-    .hero-map {
-      width: min(370px, 96vw);
-      margin: -6px auto 8px;
-      flex-shrink: 0;
-    }
-
-    .hero-map svg { width: 100%; height: auto; display: block; }
-
-    .pulse-ring { animation: radar-ping 1.8s ease-out infinite; stroke: white; }
-    .site-dot   { fill: white; }
-    @keyframes radar-ping {
-      0%   { r: 4;  opacity: 0.8; }
-      100% { r: 26; opacity: 0;   }
-    }
-
-    .site-dot { fill: white; animation: dot-glow 1s ease-in-out infinite alternate; }
-    @keyframes dot-glow {
-      0%   { opacity: 0.4; }
-      100% { opacity: 1;   }
-    }
-
-    .flow-line   { stroke-dashoffset: 0; animation: flow 1.2s linear infinite; }
-    .flow-line-2 { animation-delay: 0.3s; }
-    @keyframes flow {
-      0%   { stroke-dashoffset: 0;   }
-      100% { stroke-dashoffset: -28; }
-    }
-
-    .country-outline,
-    .country-label,
-    .country-markers { transition: all 0.8s ease-out; }
-    .country-markers { opacity: 0; }
-
-    .map-svg.highlight-se .country-se-outline { opacity: 1; stroke: rgba(255,255,255,0.7); stroke-width: 2; fill: rgba(80,80,80,0.1); }
-    .map-svg.highlight-se .country-se-label   { opacity: 1; fill: var(--clay); }
-    .map-svg.highlight-se .country-se         { opacity: 1; }
-    .map-svg.highlight-se .country-no-outline { opacity: 0.3; }
-    .map-svg.highlight-se .country-no-label   { opacity: 0.2; }
-    .map-svg.highlight-se .country-fi-outline { opacity: 0.3; }
-    .map-svg.highlight-se .country-fi-label   { opacity: 0.2; }
-
-    .map-svg.highlight-no .country-no-outline { opacity: 1; stroke: rgba(255,255,255,0.7); stroke-width: 2; fill: rgba(80,80,80,0.1); }
-    .map-svg.highlight-no .country-no-label   { opacity: 1; fill: var(--clay); }
-    .map-svg.highlight-no .country-no         { opacity: 1; }
-    .map-svg.highlight-no .country-se-outline { opacity: 0.3; }
-    .map-svg.highlight-no .country-se-label   { opacity: 0.2; }
-    .map-svg.highlight-no .country-fi-outline { opacity: 0.3; }
-    .map-svg.highlight-no .country-fi-label   { opacity: 0.2; }
-
-    .map-svg.highlight-fi .country-fi-outline { opacity: 1; stroke: rgba(255,255,255,0.7); stroke-width: 2; fill: rgba(80,80,80,0.1); }
-    .map-svg.highlight-fi .country-fi-label   { opacity: 1; fill: var(--clay); }
-    .map-svg.highlight-fi .country-fi         { opacity: 1; }
-    .map-svg.highlight-fi .country-se-outline { opacity: 0.3; }
-    .map-svg.highlight-fi .country-se-label   { opacity: 0.2; }
-    .map-svg.highlight-fi .country-no-outline { opacity: 0.3; }
-    .map-svg.highlight-fi .country-no-label   { opacity: 0.2; }
-
-    /* ── HERO ── */
-    #home {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 76px var(--space-md) 80px;
-      background: #1f2630;
-      color: var(--white);
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-tag {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xs);
-      font-size: var(--text-xs);
-      font-weight: 600;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 0;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green-glow);
-      box-shadow: 0 0 6px var(--green-glow);
-      flex-shrink: 0;
-    }
-
-    .hero-info {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: var(--space-md);
-    }
-
-    .mobile-hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-      font-weight: 400;
-      line-height: 0.95;
-      color: var(--white);
-      letter-spacing: 2px;
-      margin-bottom: 2px;
-    }
-
-    .mobile-hero-title span { color: var(--rust); }
-
-    .hero-sub {
-      font-size: var(--text-md);
-      font-weight: 700;
-      line-height: 1.4;
-      color: rgba(255,255,255,0.92);
-      letter-spacing: 0.5px;
-      margin-bottom: 0;
-    }
-
-    .hero-sub-block {
-      font-size: var(--text-sm);
-      line-height: 1.5;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 0.4px;
-      background: rgba(255,255,255,0.06);
-      border-left: 3px solid var(--accent-light);
-      padding: 8px 12px;
-      border-radius: 0 6px 6px 0;
-    }
-
-    /* ── LANG TOGGLE (fixed side) ── */
-    #mobile-root .lang-toggle {
-      position: fixed;
-      right: 0;
-      top: 68%;
-      transform: translateY(-50%);
-      z-index: 300;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-right: none;
-      border-radius: 10px 0 0 10px;
-      overflow: hidden;
-      background: rgba(15,18,30,0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: -4px 0 20px rgba(0,0,0,0.25);
-    }
-
-    #mobile-root .lang-btn {
-      background: transparent;
-      color: rgba(255,255,255,0.5);
-      border: none;
-      font-family: inherit;
-      font-size: var(--text-sm);
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      padding: 12px 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    #mobile-root .lang-btn + .lang-btn {
-      border-top: 1px solid rgba(255,255,255,0.15);
-    }
-
-    #mobile-root .lang-btn.active {
-      background: var(--royal-blue);
-      color: var(--white);
-    }
-
-    #mobile-root .lang-btn:not(.active):hover {
-      background: rgba(255,255,255,0.08);
-      color: var(--white);
-    }
-
-    /* ── HEADER LANG TOGGLE (horizontal in nav) ── */
-    #mobile-root nav .lang-toggle {
+    .mobile-only-header .lang-toggle {
       position: static;
       transform: none;
       flex-direction: row;
@@ -304,434 +57,34 @@
       gap: 8px;
       z-index: auto;
     }
-    #mobile-root nav .lang-btn {
+
+    .mobile-only-header .lang-btn {
       padding: 6px 10px;
       font-size: 13px;
       border-radius: 4px;
-    }
-    #mobile-root nav .lang-btn + .lang-btn {
-      border-top: none;
-    }
-
-    /* ── OCEAN DEPTH GRADIENT ── */
-    .ocean-depth {
-      position: relative;
-      background: #122224;
-      margin-top: -90px;
-    }
-
-    /* ── BUBBLES ── */
-    #mobile-root .bubbles {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    #mobile-root .bubbles span {
-      position: absolute;
-      bottom: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.18);
-      animation: floatBubble linear infinite;
-    }
-
-    #mobile-root .bubbles span:nth-child(1)  { left: 8%;  width: 10px; height: 10px; animation-duration: 18s; animation-delay: 0s;   }
-    #mobile-root .bubbles span:nth-child(2)  { left: 18%; width: 6px;  height: 6px;  animation-duration: 24s; animation-delay: -6s;  }
-    #mobile-root .bubbles span:nth-child(3)  { left: 30%; width: 14px; height: 14px; animation-duration: 20s; animation-delay: -14s; }
-    #mobile-root .bubbles span:nth-child(4)  { left: 42%; width: 8px;  height: 8px;  animation-duration: 28s; animation-delay: -4s;  }
-    #mobile-root .bubbles span:nth-child(5)  { left: 55%; width: 16px; height: 16px; animation-duration: 22s; animation-delay: -10s; }
-    #mobile-root .bubbles span:nth-child(6)  { left: 65%; width: 7px;  height: 7px;  animation-duration: 26s; animation-delay: -20s; }
-    #mobile-root .bubbles span:nth-child(7)  { left: 74%; width: 12px; height: 12px; animation-duration: 19s; animation-delay: -8s;  }
-    #mobile-root .bubbles span:nth-child(8)  { left: 85%; width: 9px;  height: 9px;  animation-duration: 30s; animation-delay: -16s; }
-    #mobile-root .bubbles span:nth-child(9)  { left: 22%; width: 18px; height: 18px; animation-duration: 34s; animation-delay: -24s; }
-    #mobile-root .bubbles span:nth-child(10) { left: 48%; width: 6px;  height: 6px;  animation-duration: 16s; animation-delay: -2s;  }
-    #mobile-root .bubbles span:nth-child(11) { left: 60%; width: 11px; height: 11px; animation-duration: 25s; animation-delay: -18s; }
-    #mobile-root .bubbles span:nth-child(12) { left: 90%; width: 8px;  height: 8px;  animation-duration: 21s; animation-delay: -12s; }
-
-    @keyframes floatBubble {
-      0%   { transform: translateY(0)        scale(1);    opacity: 0;   }
-      8%   { opacity: 0.75; }
-      85%  { opacity: 0.35; }
-      100% { transform: translateY(-250vh)   scale(1.15); opacity: 0;   }
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      padding: var(--section-pad);
-      padding-top: 116px;
-      padding-bottom: var(--space-md);
       background: transparent;
-    }
-
-    #about .section-label { color: rgba(255,255,255,0.6); }
-    #about .section-title { color: var(--white); }
-    #about .section-body  { color: rgba(255,255,255,0.8); }
-
-    .section-label {
-      font-size: var(--text-xs);
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: var(--space-sm);
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(34px, 7vw, 52px);
-      font-weight: 400;
-      letter-spacing: 2.5px;
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
-
-    .section-body {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--mid-grey);
-      max-width: var(--max-w);
-      margin-bottom: var(--space-xl);
-    }
-
-    .about-para { margin-bottom: var(--space-md); }
-    .about-lead {
-      font-style: italic;
-      color: rgba(255,255,255,0.92);
-      margin-bottom: var(--space-md);
-      letter-spacing: 0.01em;
-    }
-    .red-word { color: #e03030; font-weight: 600; }
-
-    /* ── TRUST STRIP ── */
-    .trust-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: var(--space-xs);
-      margin-bottom: var(--space-sm);
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: var(--text-xs);
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: rgba(160, 210, 140, 0.9);
-      background: #1f2630;
-      border: 1px solid rgba(90, 140, 60, 0.55);
-      border-radius: 8px;
-      padding: 11px 18px;
-    }
-
-    .trust-item svg { flex-shrink: 0; opacity: 0.8; }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── DEPTH METER ── */
-    .depth-meter {
-      display: none;
-      position: fixed;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 200;
-      width: 52px;
-      height: 220px;
-      flex-direction: row;
-      gap: 6px;
-      align-items: stretch;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-
-    @media (min-width: 760px) {
-      .depth-meter { display: flex; }
-    }
-
-    .depth-meter-track {
-      width: 3px;
-      height: 100%;
-      background: rgba(255,255,255,0.12);
-      border-radius: 2px;
-      position: relative;
-      overflow: hidden;
-      margin-left: 10px;
-    }
-
-    .depth-meter-fill {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 0%;
-      background: linear-gradient(to bottom, var(--ocean-start), var(--royal-blue));
-      border-radius: 2px;
-      transition: height 0.15s ease-out;
-    }
-
-    .depth-labels {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-    }
-
-    .depth-label {
-      font-family: 'Courier New', monospace;
-      font-size: 7px;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-      line-height: 1.3;
-      text-transform: uppercase;
-    }
-
-    .depth-label-aq { color: rgba(65,105,225,0.75); }
-
-    /* ── CONTACT ── */
-    #contact {
-      padding: var(--section-pad);
-      padding-top: var(--space-lg);
-      padding-bottom: var(--space-md);
-      background: transparent;
-    }
-
-    #contact .section-label { color: rgba(255,255,255,0.6); }
-    #contact .section-title { color: var(--white); }
-    #contact .section-body  { color: rgba(255,255,255,0.8); margin-bottom: 0; }
-
-    .contact-grid {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-xl);
-    }
-
-    .contact-detail {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-      margin-top: var(--space-lg);
-    }
-
-    .contact-item {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .contact-item-icon {
-      width: 36px;
-      height: 36px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .contact-item-icon svg { width: 16px; height: 16px; }
-
-    .contact-item-label {
-      font-size: var(--text-xs);
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 2px;
-    }
-
-    .contact-item-value {
-      font-size: var(--text-md);
-      font-weight: 500;
-      color: var(--white);
-      text-decoration: none;
-    }
-
-    /* ── FORM ── */
-    #mobile-root form {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    #mobile-root label {
-      font-size: var(--text-sm);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-    }
-
-    #mobile-root input, #mobile-root select, #mobile-root textarea {
-      font-family: inherit;
-      font-size: var(--text-md);
-      color: var(--white);
-      background: rgba(255,255,255,0.12);
-      border: 1.5px solid rgba(255,255,255,0.15);
-      border-radius: 8px;
-      padding: 12px 14px;
-      outline: none;
-      width: 100%;
-      transition: border-color 0.15s, background 0.15s;
-      -webkit-appearance: none;
-    }
-
-    #mobile-root input::placeholder, #mobile-root textarea::placeholder { color: rgba(255,255,255,0.35); }
-
-    #mobile-root textarea { resize: vertical; min-height: 110px; }
-
-    #mobile-root input:focus, #mobile-root select:focus, #mobile-root textarea:focus,
-    #mobile-root input:focus-visible, #mobile-root select:focus-visible, #mobile-root textarea:focus-visible {
-      border-color: rgba(255,255,255,0.6);
-      background: rgba(255,255,255,0.18);
-      outline: 2px solid rgba(255,255,255,0.4);
-      outline-offset: 2px;
-    }
-
-    .btn-submit {
-      background: var(--white);
-      color: var(--black);
-      font-family: inherit;
-      font-size: var(--text-md);
-      font-weight: 600;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      margin-top: var(--space-sm);
-    }
-
-    .btn-submit:hover  { background: rgba(255,255,255,0.85); }
-    .btn-submit:active { background: rgba(255,255,255,0.7); transform: scale(0.98); }
-
-    .btn-submit.sent { background: var(--accent); color: var(--white); }
-
-    #mobile-root .form-success {
-      display: none;
-      margin-top: var(--space-sm);
-      padding: 16px;
-      background: rgba(74, 222, 128, 0.08);
-      border: 1px solid rgba(74, 222, 128, 0.22);
-      border-radius: 8px;
-    }
-
-    #mobile-root .form-success.visible { display: block; }
-
-    #mobile-root .form-success h3 {
-      font-size: var(--text-md);
-      color: var(--green-glow);
-      margin-bottom: 4px;
-    }
-
-    #mobile-root .form-success p {
-      font-size: var(--text-base);
-      line-height: 1.45;
-      color: rgba(255,255,255,0.78);
-      margin-bottom: 0;
-    }
-
-    /* ── FOOTER ── */
-    #mobile-root footer {
-      padding: var(--space-lg) var(--space-md);
-      border-top: 1px solid rgba(255,255,255,0.12);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-xs);
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      color: var(--white);
-    }
-
-    .footer-logo span { color: rgba(255,255,255,0.6); }
-
-    #mobile-root footer p {
-      font-size: var(--text-sm);
-      color: rgba(255,255,255,0.4);
-    }
-
-    .footer-legal {
-      margin-top: 0;
-      width: 100%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .footer-legal p {
-      font-size: var(--text-xs);
       color: rgba(255,255,255,0.5);
-      letter-spacing: 0.3px;
+      border: none;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    /* ── WAVES ── */
-    .hero-wave {
-      position: absolute;
-      bottom: 0px; left: 0; right: 0;
-      height: 110px;
-      overflow: hidden;
-      pointer-events: none;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
+    .mobile-only-header .lang-btn.active {
+      background: #4169e1;
+      color: #ffffff;
     }
 
-    .hero-wave svg {
-      position: absolute;
-      bottom: -1px;
-      width: 200%;
-      height: 100%;
-    }
-
-    .wave-layer-1 { animation: waveScroll 8s linear infinite; opacity: 0.45; }
-    .wave-layer-2 { animation: waveScroll 5s linear infinite; opacity: 0.35; }
-    .wave-layer-3 { animation: waveScroll 4s linear infinite; opacity: 0.30; }
-    .wave-layer-4 { animation: waveScroll 6s linear infinite; opacity: 0.60; }
-    .wave-layer-5 { animation: waveScroll 4.5s linear infinite; opacity: 0.35; }
-    .wave-layer-6 { animation: waveScroll 3.5s linear infinite; opacity: 1; }
-
-    @keyframes waveScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ── GALLERY MASONRY ── */
-    .gallery-section {
-      padding: var(--space-md) var(--space-md);
+    @media (max-width: 768px) {
+      .mobile-only-header { display: flex; }
     }
 
     .gallery-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-xs);
+      gap: 8px;
+
     }
 
     .gallery-item {
@@ -1001,6 +354,27 @@
       width: 100%;
       height: 110px; /* Keep wave height fixed */
       overflow: hidden;
+    }
+
+    /* ---------- Hero Canvas Wave ---------- */
+    .hero-wave {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 150px;
+      pointer-events: none;
+      z-index: 60;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+    }
+
+    #hero-wave-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .hero-wave { display: none; }
     }
 
     /* ---------- Navigation Dots ---------- */
@@ -1642,12 +1016,9 @@
         border-radius: 6px;
       }
 
-      /* Waves hidden on mobile to keep just the block color as requested */
+      /* Hide waves on mobile — they overlap browser chrome (Safari search bar etc) */
       .wave-overlay {
-        background: #122224;
-      }
-      .wave-overlay svg {
-        display: none;
+        display: none !important;
       }
 
       #desktop-root .form-input,
@@ -1680,6 +1051,37 @@
       #desktop-root .hero-nav__link { font-size: 0.75rem; padding: 12px 18px; }
     }
 
+    /* ---------- Mobile Responsive Overrides ---------- */
+    @media (max-width: 768px) {
+      #desktop-root {
+        position: static;
+        height: auto;
+        overflow: visible;
+      }
+      
+      #desktop-root .stratum {
+        position: static;
+        opacity: 1;
+        pointer-events: auto;
+        height: auto;
+        overflow: visible;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      
+      #desktop-root .stratum__content {
+        opacity: 1 !important;
+        transform: none !important;
+        max-width: 100%;
+        padding: 80px 20px 40px 20px !important;
+      }
+      
+      /* Hide desktop navigation as we use the mobile header */
+      #desktop-root .hero-nav { display: none !important; }
+      #desktop-root .nav-logo { display: none; } /* Hide the one in desktop if it exists */
+      
+
+    }
+
     /* ── Reduced Motion ── */
     @media (prefers-reduced-motion: reduce) {
       .wave-layer-1, .wave-layer-2, .wave-layer-3,
@@ -1700,191 +1102,18 @@
 </head>
 <body>
 
-<div id="mobile-root">
 
-  <nav aria-label="Mobile section navigation">
+<div id="desktop-root">
+
+  <!-- Mobile-only header -->
+  <nav class="mobile-only-header" aria-label="Mobile section navigation">
     <a class="nav-logo" href="#home">Maxilium <span>Groundwater</span></a>
-    <!-- Language toggle replaces text links -->
     <div class="lang-toggle">
       <button type="button" class="lang-btn" data-lang="en">EN</button>
       <button type="button" class="lang-btn active" data-lang="sv">SV</button>
     </div>
   </nav>
 
-  <!-- HOME -->
-  <section id="home">
-
-    <div class="hero-map">
-      <svg viewBox="20 20 440 560" class="map-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="country-outline country-no-outline" d="M282 98.8 L277.8 99 L273.6 99.3 L277.5 103 L277.7 106.5 L275.8 111.4 L271.4 115.3 L275.9 117.4 L272.2 121.2 L263.7 119.2 L256.6 116.5 L251.2 116.8 L247.7 114.6 L243 115.4 L242.2 119.1 L243 126.7 L239.7 132.8 L233.7 132.1 L229.1 129.8 L220.9 136.3 L217.7 145.1 L215.7 148.1 L211.2 149.7 L210 152.6 L215 160 L214.6 164.9 L210 168.9 L202.7 180 L198.8 183.6 L199.6 188.2 L192.9 194.9 L188.8 195.4 L184.6 195.8 L186.3 205.2 L185.1 209.4 L184.2 217.8 L184.3 221.2 L182.4 224.8 L181.4 229.2 L178.8 233.6 L174.5 240.4 L170.3 247.2 L175 250.3 L177.8 252 L178.6 259.8 L175.7 266 L169.4 265 L163.7 263.6 L159.7 264.7 L156.1 267 L151.7 273 L148.7 278.1 L147.5 283.4 L143.9 290.4 L145 293.2 L147.6 300 L145.7 302.6 L146.5 308.9 L145.6 312.2 L148.5 321.9 L149.1 325.5 L147.8 334 L146.6 342.5 L148.7 345 L150.7 347.3 L153.8 348.4 L158 354.3 L157.7 358.2 L155.9 361.6 L155.4 364.6 L152.2 365 L148.5 366.2 L149 369.9 L149.6 373.6 L151.7 378.1 L153.5 382.8 L153.7 386 L152.1 389.1 L152.3 393.4 L151.7 397.3 L148.6 401.4 L146.3 403.4 L143.1 403.3 L142.1 406.5 L142.4 409.5 L139.1 412.6 L140.5 421.3 L141 424.3 L140 428.7 L139.3 432.6 L138.6 436 L135.7 437.1 L135 433.6 L130.9 429.5 L124.8 427 L122 417.4 L121.2 407.8 L122.5 404.8 L120.9 403.9 L118 409.9 L115.8 414.7 L117.9 418.2 L119.6 424.4 L117.3 426.6 L114.8 433.2 L111.7 434.6 L107 430.3 L105.2 436 L102 436.8 L100 442.2 L95.8 446.8 L92.4 452.2 L88.2 456.9 L83.6 461.2 L78.9 463 L76.1 464.3 L70.3 466.1 L64.4 466.8 L60.9 463.3 L56.7 463.1 L58.8 460.6 L57 458.6 L53.6 457.1 L47.7 453.1 L42.3 448.4 L39.6 441.5 L40.6 435.1 L43.2 437.1 L47.5 436.5 L48.8 433.4 L46 431.1 L49.3 426.1 L55.4 422.7 L49 421.9 L50.5 419.1 L54.8 415 L51.8 415.8 L49.6 418.9 L46.2 418.4 L43.3 417.6 L45.6 420.5 L41.4 419.5 L39.1 420.3 L37.7 420.4 L35.9 415.6 L39 409.7 L39.7 413 L40.6 413.4 L46.3 408.5 L50.6 406.8 L47.4 408 L43.3 405.4 L44.4 402.3 L48.2 398.1 L52.7 395.9 L49.2 393.4 L51.3 390.8 L55.7 386 L57.1 389 L56.3 397.3 L58.5 387.3 L63.1 383.6 L58.8 385.4 L53.1 386.8 L51.6 387.5 L47.7 392.2 L43.3 399.7 L42.2 391.2 L40.5 392.3 L36 393.1 L34.6 390.2 L35.8 383.7 L42.5 385.6 L43.5 378.7 L42.7 375.8 L38 380.7 L33.4 376.3 L34.4 375 L38.9 379 L40.6 370.8 L35 372.4 L32.5 370.5 L34.1 367.8 L38 365.8 L44.4 362.9 L51.1 363.2 L56.7 363.2 L63 363.6 L64.2 366.4 L65.8 368.7 L66.7 363 L71.3 360.2 L69.4 357.5 L71.8 351.9 L67.8 356.8 L66.5 361.3 L61 360.6 L56.9 359.2 L56 357.7 L52.5 362.5 L46 361.4 L39.6 363.5 L32.9 361.4 L33.4 356.5 L42.1 354.6 L34.6 354.8 L31.8 353 L39.7 352.3 L36.1 350.2 L34.8 347.1 L38.4 347.3 L31.6 342.5 L34.7 342.5 L37.8 336.5 L43.9 338.4 L46.4 341.6 L50 341 L55.6 339.8 L52.1 338.1 L45.5 337.6 L39.2 335.8 L35.5 336.2 L35.3 329.9 L33.4 327.5 L38.3 330.4 L42 327.8 L42.7 327.6 L46.5 330.2 L53.9 331.3 L47.7 324 L55.7 320 L59 318.3 L63.7 323.9 L66.4 329.5 L64.6 326.6 L70.3 325.5 L66.6 323.8 L61.6 318.2 L55.7 319 L52.6 318.1 L58.8 316.9 L52.2 315.8 L59.7 311.6 L65.5 311.6 L69 313.2 L76.5 314.2 L72.2 311.2 L77.4 308.9 L80.7 309.1 L74.3 309 L74.9 306.9 L63.5 309.1 L63.2 303.2 L68.3 299.5 L73.9 301.3 L81.2 301.6 L85.1 307.4 L85.3 306.6 L82.4 301.6 L80.3 296.6 L85.2 300.7 L88.4 305.2 L86.3 300.9 L82.6 296.2 L88.7 295.6 L88.4 290.7 L94.1 286.7 L98.1 286.8 L100.2 287.9 L103.7 284.2 L101.9 281.2 L106.7 278.7 L110.4 284.1 L113.6 289.2 L114.5 284.9 L120.7 285.5 L124.5 282 L128.5 276 L135.1 273.8 L129.8 271.7 L131.4 268.8 L132.2 265.5 L127.4 268.4 L121.2 273 L126.6 275.6 L121.1 279.2 L115.3 281.9 L110.2 280.8 L112 275.9 L107.5 274.6 L113.1 269.4 L112 263 L115.1 263.3 L117.8 260.5 L119.2 255 L125 254.3 L122.2 252 L127 247.2 L131 251.9 L136.3 251.3 L137.2 248.1 L134.6 244.8 L136.5 241.8 L142.7 235.8 L139.8 237 L132.1 239.4 L131.9 238.1 L137.5 236.1 L142.5 231.7 L149.4 230.6 L156.4 226.3 L154.7 226.8 L150.7 225.7 L148.4 225.6 L153.6 221.5 L153.5 217 L150.5 215.5 L149.7 212.4 L154.2 210.5 L154.2 203.8 L159.5 202.5 L159.1 200.9 L155.4 198.6 L161.2 195.1 L168.4 192 L171.9 194.5 L175.6 192.1 L174.6 190.9 L168.1 191.4 L161.1 194.2 L167.9 190 L162.5 189.9 L162.7 186.3 L165.8 184.8 L170.7 182.8 L167.7 181.5 L165.4 181.5 L162.7 178.3 L167.9 176.2 L174.2 175.5 L168.1 173.9 L172.5 168.5 L178.4 167.6 L183.6 165.1 L180.6 164.1 L186.8 161.3 L195.5 160.3 L203.5 160.9 L197.7 159.1 L188.4 157.7 L182.6 158.4 L185.6 154.1 L191.7 152.5 L188.5 151.3 L193.3 150.1 L200.7 154 L201.4 153.5 L200.9 150.2 L196.3 149.2 L195.6 146.3 L200.7 144.2 L198.6 140.1 L189.4 145.2 L193.9 141.9 L189.6 138.5 L195.7 137.6 L204 134.9 L205.6 131.9 L198.1 132.6 L202.2 127.8 L205.9 127.1 L209 127.9 L211.1 133.9 L215 139.7 L213.7 133 L213.5 130.6 L215.3 128.2 L209.9 124.2 L216.1 124.8 L219.8 128.7 L214.6 123.4 L211.8 121.8 L219.1 119.8 L226 120.9 L228 119.8 L231.9 121.2 L228.2 118.2 L221.6 118.4 L215.8 115.7 L221 110.6 L226.1 112.2 L230.7 110.8 L227.8 108.1 L235.5 107.4 L231.5 105.6 L232.3 102.8 L234.5 96.1 L242.4 94.9 L241.8 88.9 L244.8 83.8 L248.5 85.3 L253.6 81.6 L258.8 81.6 L259.7 74.3 L267.8 72.9 L266.1 82.7 L267.5 83.6 L271.9 80.4 L271.6 72.3 L277 67.9 L278.1 80 L275.1 86.2 L275.6 87.2 L282.4 82.6 L280.6 79.7 L284.6 73.3 L290.7 70.8 L296.9 67.5 L302.5 72.5 L302.6 68.7 L300.8 65.4 L295 62.1 L297.1 56 L301.1 60.8 L303.8 55.9 L308.4 59.9 L313.4 58.6 L319.5 59.8 L312.8 63.8 L320.3 65.4 L328.4 66.2 L323.9 59.5 L329.1 57 L334.7 49.7 L341.3 43.8 L345.8 45.8 L341.6 41.2 L346.9 38 L351.8 36.2 L358.3 36.6 L363.9 37.9 L360.2 44.3 L353.6 49.2 L356.6 51.5 L351.4 61 L355.7 63.6 L360.3 57.4 L365.9 47.9 L372.1 40.1 L379.3 37.7 L373.5 45.1 L377.6 48 L378.6 52.5 L383.9 47.2 L385.7 44.8 L394.1 39.8 L389.5 34.9 L394.4 29.1 L402.7 30.6 L407.9 33.3 L402.9 40.6 L399.8 41.4 L394.8 46.1 L402.5 44.1 L402.7 47.1 L397.9 51.4 L404 49.7 L402.5 57.2 L403.6 60.9 L405.2 51.3 L408.2 51.4 L408.9 41.7 L416.9 37.2 L420.7 41.9 L427.2 41.9 L431.3 43.2 L437.4 46.5 L439.3 48 L446.8 51.5 L446.9 57.9 L434.3 63.6 L419.5 62.7 L411.7 63.4 L418.2 64.7 L427 67.7 L427.4 69.5 L425.6 75.6 L430.4 75.5 L436.6 70.4 L438.6 76.6 L446.9 80.2 L440.2 82.1 L435.4 82.4 L431.5 87.6 L423 89.6 L420 95.6 L413.4 97.3 L413.5 94 L419.7 87.4 L421.5 84.5 L419.3 80.5 L412.9 75.7 L403 70.5 L396.7 64.7 L390.1 67.5 L382.3 68.9 L376 69.4 L371.2 76.2 L368.1 80.4 L365.5 86.1 L363.8 92.7 L364.2 98.8 L361.6 104.3 L354.3 110.1 L352.1 112.8 L348.1 112.1 L339 108.5 L332.3 108.1 L327.7 110.5 L320.3 110.4 L313.5 109.2 L310.5 109.6 L307.2 103.1 L298.6 91.2 L293 90.3 L290.5 97.1 L283.9 96.5 Z" stroke="rgba(255,255,255,0.35)" stroke-width="1" fill="rgba(61,114,168,0.05)" opacity="0.8"/>
-        <text class="country-label country-no-label" x="92" y="346" fill="rgba(255,255,255,0.5)" font-size="10" font-family="monospace">NORWAY</text>
-        <path class="country-outline country-fi-outline" d="M415.3 99.1 L411.4 101.1 L407.3 103.3 L410.3 104.3 L412 108 L407.4 115.3 L410.6 126.5 L416.2 129.1 L420.8 130.6 L423.1 133.6 L426.4 139.2 L432.2 143.8 L431.4 147.2 L424.3 156.7 L417.6 167 L417.4 172.1 L421.2 177.3 L422.3 180.1 L424.4 183.6 L425.1 187.4 L426.4 190.4 L428.7 194 L430.7 197.7 L431.3 200.9 L432.6 204.5 L433.8 209.6 L428.2 211.7 L429.4 214.5 L427.6 217 L427.7 221.2 L425.8 224.4 L428.3 226.1 L429.1 229.1 L426 231.3 L426.1 236.4 L428.5 240.1 L433 240.5 L434.1 243.3 L431.5 247.4 L432.6 250.3 L432.5 253.4 L437.1 256.1 L440.1 258.5 L440.7 261.8 L441.3 265 L437.3 270.1 L435.2 273.6 L432 275.1 L435.9 280.6 L439.1 283.6 L445.1 287.5 L447.6 290.4 L450.8 292.5 L451.9 295.5 L454.1 298.4 L456.1 301.1 L455.7 305.8 L453.8 311.6 L452.2 315.8 L450 318.8 L447.7 321.4 L444.7 324.9 L442.4 326.9 L439.7 331.1 L437.4 333.6 L434.3 338.3 L431.6 342.4 L429.5 344.7 L426.2 349.6 L423.7 352.2 L421.1 355.4 L419.3 358.5 L415.7 361.1 L412.8 363.4 L411 365.8 L408.4 368.3 L405.4 371.4 L402.4 374.7 L400.1 377.9 L396.9 381.6 L394.2 383.6 L391.3 384.5 L388 383.1 L385 381.9 L383.3 384.4 L380.1 384.1 L377.2 385.1 L377 381.9 L380.1 380.9 L375.5 383.1 L375.2 386.1 L372.2 385.3 L369 385.6 L369.6 388.6 L366.2 387 L366.3 390.3 L362.5 390.2 L357.8 391.8 L354.8 392.5 L352.7 394.8 L349.5 395.2 L346.7 396.6 L344.4 398.8 L341.3 399.9 L338.5 398.6 L335.5 399.6 L332.8 401.4 L329.7 401.4 L328.6 398.5 L326.5 400.7 L323.8 403.4 L321.3 405.8 L318.2 406.2 L322 403.8 L324.7 401.4 L321.9 402.5 L320.6 398.5 L318.7 392.3 L315.8 392.1 L312.9 393.2 L312.1 390 L309.2 387.3 L303.8 384.2 L300.6 384.1 L298.5 382.7 L295.8 380.9 L294.1 378.4 L295.5 375.6 L293.8 372.8 L294.1 369.5 L293.4 366.5 L295.3 364.1 L295.3 361 L296.5 355 L295.5 348.4 L297.5 345.7 L295.1 339.1 L291.8 333.8 L292.5 330.8 L294 324.4 L290.1 319.4 L290 316.3 L291.1 313.3 L289.3 310.7 L291.6 304.7 L295.1 299.8 L298.5 299.4 L296.2 293.8 L299.4 293.3 L303.7 295.2 L307.9 291.1 L307.5 286.2 L308.3 282.9 L312.4 278.6 L316.1 279.2 L318.4 273.5 L324.4 270.4 L328.1 265.3 L331.6 259.7 L335.7 255 L339.7 250.4 L342.5 245 L344.9 239.7 L353.2 236.1 L355.2 238.4 L355.1 234.4 L358.3 231.7 L355.4 229.2 L357.1 222.8 L357.2 216.4 L352.4 212.6 L345.5 209.7 L345.2 206.4 L341.7 207.4 L337.6 203 L336.5 198.8 L334.6 195 L331.6 193.1 L330.7 186.5 L334.1 181.2 L334.8 174.2 L333.1 167.5 L329.6 162 L332.2 153.4 L327.8 148.6 L328.3 144.9 L327.8 132.8 L322.6 127.4 L318.5 122.1 L312.3 118.7 L305.2 117.4 L299.5 112.7 L291.5 106.1 L286.5 103.5 L283.9 96.5 L288.5 94 L293 90.3 L303.1 97.8 L310.3 108.9 L313.5 109.2 L320.3 110.4 L332.3 108.1 L339 108.5 L353.1 112.3 L358.2 104.2 L363.6 101.9 L364.3 95.8 L365.5 86.1 L368.1 77 L373.1 73.5 L379.3 68.8 L385.3 69.9 L393.8 64.6 L402.7 70.2 L412.9 75.7 L419.3 80.5 L421.5 84.5 L413.8 92.8 L415.3 99.1 Z" stroke="rgba(255,255,255,0.35)" stroke-width="1" fill="rgba(61,114,168,0.05)" opacity="0.8"/>
-        <text class="country-label country-fi-label" x="373" y="305" fill="rgba(255,255,255,0.5)" font-size="10" font-family="monospace">FINLAND</text>
-        <path class="country-outline country-se-outline" d="M282 98.8 L285.8 100.5 L286.5 103.5 L290.4 105.3 L292.6 107.7 L295.2 110.1 L298.6 112.2 L302.7 114.4 L304.6 116.9 L308.8 117.5 L312.3 118.7 L315.5 120 L318.5 122.1 L321.1 123.7 L322.4 126.9 L325.1 128.7 L326.1 131.6 L329.2 134.2 L328 137.3 L327.8 142.1 L328.7 145.8 L327.5 149.3 L330.6 152.1 L332 155.1 L330 157.7 L329.2 160.9 L330.7 163.8 L331.9 166.6 L334 169.2 L336 172.9 L334.4 176.4 L334.2 179.5 L332.9 182.4 L330.4 184.7 L330.8 187.9 L331 191.4 L332.6 194.1 L335.4 197.3 L336.9 200.5 L338 204.4 L336.5 207 L332.9 207 L326.9 206.4 L322.1 208.9 L316.9 205 L315.2 206.2 L310.5 204.5 L310.2 210.9 L307 212.5 L310.5 215.3 L302.9 211.2 L300.2 209.1 L306.1 214.1 L301.6 219.7 L295.5 220.7 L297.2 225.4 L292.4 221.7 L297.8 227.7 L296.7 230.6 L292.1 234.8 L292.5 240.8 L289.9 242.3 L293.7 247.7 L297.6 251.9 L292.6 256.6 L287.5 261.7 L285.8 267.8 L283 273.4 L278.6 275.3 L273.9 278.6 L268.6 282 L265.3 282.6 L260.4 286.7 L256.6 292 L253 291.3 L249 294.1 L245.9 299.3 L248.8 300.5 L243.1 307.4 L238.6 304.1 L239.3 307.2 L241 313.5 L235.1 316.7 L230.1 319.1 L232.7 325 L231.5 331.3 L229.8 337.3 L232.2 342.9 L226.2 342.5 L225.3 348.3 L226.4 351.2 L228 357.1 L226.5 362.9 L228.5 372 L233.2 378.4 L237.1 380.5 L241.6 384.5 L247.2 388.6 L245.9 390.7 L249.2 397.1 L252.6 399.4 L255.8 402.7 L253.8 406.6 L257.4 407.6 L250.6 413.4 L245.5 417.6 L241.5 422.4 L249.6 421.3 L245.8 423.1 L244.9 429 L240.1 433.1 L236.4 434.6 L233.3 434.6 L233.5 437.8 L228.4 441.7 L222.8 445.8 L211.7 444.4 L218.2 445.8 L223 450.3 L216.6 451.1 L219.2 456 L220.4 462.3 L217.9 459.9 L219.8 466.2 L216.2 466.7 L218.8 474.5 L217.9 478.1 L218.9 483.7 L215.8 490.2 L216.5 496.1 L215.4 502.1 L214.1 510.2 L210.8 515.8 L208.6 524.8 L205.6 530.5 L200.6 527.1 L194.6 527.9 L187.6 527.7 L184.9 531.5 L180.3 536.9 L180.2 544 L180.7 550.8 L175.3 552.4 L166.6 554.9 L158.7 553.8 L158.9 547.4 L159.5 541.8 L156.8 535.5 L153.8 529.4 L151.2 523.2 L157.3 524.5 L154.5 518.2 L159 515.1 L158.2 512.1 L153.5 507.1 L149.5 502 L147.7 496 L146.3 489.7 L142.5 485 L141.7 478.9 L140.1 469.9 L141.4 460.4 L137.9 457.4 L135.9 456.3 L134.2 453.4 L132 448.4 L130.9 442.1 L131.7 438.5 L129.9 432.6 L134.6 433.3 L138.6 436 L140 428.7 L140.5 421.3 L138.8 414.7 L142.5 407.7 L141.6 404.3 L148.6 401.4 L152.4 394.6 L152.9 388 L151.7 378.1 L149 369.9 L148.1 366.6 L155.3 365.1 L158.2 355 L153.8 348.4 L148.7 345 L147.8 334 L149.1 325.5 L145.5 313.8 L146.2 310.6 L145.6 303.8 L143.9 290.4 L147.3 284.8 L151.7 273 L159.7 264.7 L169.4 265 L178.4 261 L177.8 252 L170.3 247.2 L178.8 233.6 L181 230.5 L184.2 222.7 L185 210 L184.6 195.8 L192.9 194.9 L199.7 190.8 L198.9 184.5 L202.7 180 L210 168.9 L215.1 160.6 L210 152.6 L214.9 148.9 L220.2 137.4 L227.5 132 L238.3 134.3 L242.7 128.1 L242.5 116 L250.3 116.6 L263.7 119.2 L275.9 117.4 L274.4 113.1 L277.4 107.8 L273.6 99.3 L282 98.8 Z" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="rgba(61,114,168,0.1)"/>
-        <text class="country-label country-se-label" x="165" y="423" fill="rgba(255,255,255,0.5)" font-size="10" font-family="monospace">SWEDEN</text>
-        <path d="M256.6 471.1 L255.7 474.3 L252.9 475.5 L252.4 478.6 L252.6 485 L251.4 491.9 L248.9 493.6 L245.4 499 L243.2 499.4 L242.6 492.3 L242.1 481.7 L245.2 477.6 L249.9 471.4 L253.6 469.5 L256.4 470.9 Z" stroke="rgba(255,255,255,0.35)" stroke-width="1" fill="rgba(61,114,168,0.08)"/>
-        <g class="country-markers country-se">
-          <path class="flow-line" d="M240 167 L216 300 L224 383 L248 417" stroke="white" stroke-width="1.5" fill="none" opacity="0.45" stroke-dasharray="6,8"/>
-          <path class="flow-line flow-line-2" d="M248 417 L184 483 L163 540" stroke="white" stroke-width="1.5" fill="none" opacity="0.4" stroke-dasharray="6,8"/>
-          <circle cx="240" cy="167" r="14" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:0s"/>
-          <circle cx="240" cy="167" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="250" y="165" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">SE-01</text>
-          <circle cx="216" cy="300" r="14" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:0.5s"/>
-          <circle cx="216" cy="300" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="182" y="298" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">SE-02</text>
-          <circle cx="224" cy="383" r="14" fill="none" stroke="var(--clay)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:1s"/>
-          <circle cx="224" cy="383" r="6.5" fill="var(--clay)" opacity="1" class="site-dot"/>
-          <text x="190" y="377" fill="var(--clay)" font-size="8" font-family="monospace" opacity="0.8">SE-03</text>
-          <circle cx="248" cy="417" r="14" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:0.8s"/>
-          <circle cx="248" cy="417" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="256" y="430" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">SE-04</text>
-          <circle cx="184" cy="483" r="14" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:1.3s"/>
-          <circle cx="184" cy="483" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="150" y="475" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">SE-05</text>
-          <circle cx="163" cy="540" r="14" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:1.8s"/>
-          <circle cx="163" cy="540" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="129" y="554" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">SE-06</text>
-        </g>
-        <g class="country-markers country-no">
-          <path class="flow-line" d="M256 78 L132 268 L48 335 L124 403" stroke="white" stroke-width="1.5" fill="none" opacity="0.45" stroke-dasharray="6,8"/>
-          <path class="flow-line flow-line-2" d="M55 422 L124 403" stroke="white" stroke-width="1.5" fill="none" opacity="0.4" stroke-dasharray="4,6"/>
-          <circle cx="256" cy="78" r="12" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:0.2s"/>
-          <circle cx="256" cy="78" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="222" y="70" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">NO-01</text>
-          <circle cx="132" cy="268" r="12" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:0.8s"/>
-          <circle cx="132" cy="268" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="142" y="258" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">NO-02</text>
-          <circle cx="55" cy="422" r="12" fill="none" stroke="var(--clay)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:1.4s"/>
-          <circle cx="55" cy="422" r="6.5" fill="var(--clay)" opacity="1" class="site-dot"/>
-          <text x="62" y="431" fill="var(--clay)" font-size="8" font-family="monospace" opacity="0.8">NO-03</text>
-          <circle cx="124" cy="403" r="12" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:2s"/>
-          <circle cx="124" cy="403" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="121" y="393" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">NO-04</text>
-          <circle cx="48" cy="335" r="12" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:1.1s"/>
-          <circle cx="48" cy="335" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="58" y="340" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">NO-05</text>
-        </g>
-        <g class="country-markers country-fi">
-          <path class="flow-line" d="M364 183 L360 233 L332 350 L351 394" stroke="white" stroke-width="1.5" fill="none" opacity="0.45" stroke-dasharray="6,8"/>
-          <circle cx="364" cy="183" r="12" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:0.4s"/>
-          <circle cx="364" cy="183" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="374" y="181" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">FI-01</text>
-          <circle cx="360" cy="233" r="12" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:1s"/>
-          <circle cx="360" cy="233" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="370" y="231" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">FI-02</text>
-          <circle cx="332" cy="350" r="12" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:1.6s"/>
-          <circle cx="332" cy="350" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="342" y="348" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">FI-03</text>
-          <circle cx="351" cy="394" r="12" fill="none" stroke="var(--rust)" opacity="0" stroke-width="1" class="pulse-ring" style="animation-delay:2.2s"/>
-          <circle cx="351" cy="394" r="6.5" fill="var(--rust)" opacity="1" class="site-dot"/>
-          <text x="341" y="412" fill="var(--rust)" font-size="8" font-family="monospace" opacity="0.8">FI-04</text>
-        </g>
-      </svg>
-    </div>
-
-    <div class="hero-info">
-      <h1 class="mobile-hero-title">Maxilium<br><span>Groundwater</span></h1>
-      <span class="hero-tag"><span class="status-dot"></span><span data-i18n="hero.tag">Status · Operational</span></span>
-      <p class="hero-sub" data-i18n="hero.sub">Development of Groundwater Sources — Scandinavia</p>
-      <p class="hero-sub-block" data-i18n="hero.sub2">Development and action plan for securing groundwater resources — for the establishment of groundwater sources 2025–2030.</p>
-    </div>
-
-    <div class="hero-wave" aria-hidden="true">
-      <svg class="wave-layer-1" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0 46.8 C 16.7 49.1, 33.3 51.1, 50.0 52.6 C 66.7 54.2, 83.3 55.2, 100.0 55.6 C 116.7 56.1, 133.3 56.0, 150.0 55.5 C 166.7 55.0, 183.3 54.1, 200.0 53.2 C 216.7 52.3, 233.3 51.3, 250.0 50.4 C 266.7 49.6, 283.3 49.0, 300.0 48.5 C 316.7 48.1, 333.3 47.8, 350.0 47.6 C 366.7 47.4, 383.3 47.2, 400.0 46.8 C 416.7 46.4, 433.3 45.9, 450.0 45.0 C 466.7 44.1, 483.3 42.9, 500.0 41.5 C 516.7 40.1, 533.3 38.5, 550.0 37.0 C 566.7 35.5, 583.3 34.1, 600.0 33.2 C 616.7 32.3, 633.3 31.8, 650.0 32.0 C 666.7 32.1, 683.3 33.0, 700.0 34.4 C 716.7 35.8, 733.3 37.7, 750.0 39.9 C 766.7 42.1, 783.3 44.6, 800.0 46.8 C 816.7 49.1, 833.3 51.1, 850.0 52.6 C 866.7 54.2, 883.3 55.2, 900.0 55.6 C 916.7 56.1, 933.3 56.0, 950.0 55.5 C 966.7 55.0, 983.3 54.1, 1000.0 53.2 C 1016.7 52.3, 1033.3 51.3, 1050.0 50.4 C 1066.7 49.6, 1083.3 49.0, 1100.0 48.5 C 1116.7 48.1, 1133.3 47.8, 1150.0 47.6 C 1166.7 47.4, 1183.3 47.2, 1200.0 46.8 C 1216.7 46.4, 1233.3 45.9, 1250.0 45.0 C 1266.7 44.1, 1283.3 42.9, 1300.0 41.5 C 1316.7 40.1, 1333.3 38.5, 1350.0 37.0 C 1366.7 35.5, 1383.3 34.1, 1400.0 33.2 C 1416.7 32.3, 1433.3 31.8, 1450.0 32.0 C 1466.7 32.1, 1483.3 33.0, 1500.0 34.4 C 1516.7 35.8, 1533.3 37.7, 1550.0 39.9 C 1566.7 42.1, 1583.3 44.6, 1600.0 46.8 L1600 110 L0 110 Z" fill="#2a6a6e"/>
-      </svg>
-      <svg class="wave-layer-2" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0 58.4 C 16.7 60.0, 33.3 61.5, 50.0 62.7 C 66.7 63.8, 83.3 64.6, 100.0 64.9 C 116.7 65.1, 133.3 64.8, 150.0 64.0 C 166.7 63.2, 183.3 61.9, 200.0 60.3 C 216.7 58.7, 233.3 56.9, 250.0 55.1 C 266.7 53.3, 283.3 51.6, 300.0 50.1 C 316.7 48.7, 333.3 47.6, 350.0 46.9 C 366.7 46.2, 383.3 45.8, 400.0 45.7 C 416.7 45.6, 433.3 45.8, 450.0 46.0 C 466.7 46.3, 483.3 46.6, 500.0 46.9 C 516.7 47.1, 533.3 47.3, 550.0 47.4 C 566.7 47.5, 583.3 47.5, 600.0 47.6 C 616.7 47.6, 633.3 47.8, 650.0 48.2 C 666.7 48.6, 683.3 49.2, 700.0 50.1 C 716.7 51.1, 733.3 52.3, 750.0 53.8 C 766.7 55.2, 783.3 56.9, 800.0 58.4 C 816.7 60.0, 833.3 61.5, 850.0 62.7 C 866.7 63.8, 883.3 64.6, 900.0 64.9 C 916.7 65.1, 933.3 64.8, 950.0 64.0 C 966.7 63.2, 983.3 61.9, 1000.0 60.3 C 1016.7 58.7, 1033.3 56.9, 1050.0 55.1 C 1066.7 53.3, 1083.3 51.6, 1100.0 50.1 C 1116.7 48.7, 1133.3 47.6, 1150.0 46.9 C 1166.7 46.2, 1183.3 45.8, 1200.0 45.7 C 1216.7 45.6, 1233.3 45.8, 1250.0 46.0 C 1266.7 46.3, 1283.3 46.6, 1300.0 46.9 C 1316.7 47.1, 1333.3 47.3, 1350.0 47.4 C 1366.7 47.5, 1383.3 47.5, 1400.0 47.6 C 1416.7 47.6, 1433.3 47.8, 1450.0 48.2 C 1466.7 48.6, 1483.3 49.2, 1500.0 50.1 C 1516.7 51.1, 1533.3 52.3, 1550.0 53.8 C 1566.7 55.2, 1583.3 56.9, 1600.0 58.4 L1600 110 L0 110 Z" fill="#35807a"/>
-      </svg>
-      <svg class="wave-layer-3" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0 60.6 C 16.7 62.2, 33.3 63.6, 50.0 64.6 C 66.7 65.5, 83.3 66.1, 100.0 66.4 C 116.7 66.8, 133.3 66.9, 150.0 67.0 C 166.7 67.0, 183.3 67.1, 200.0 67.4 C 216.7 67.6, 233.3 68.0, 250.0 68.4 C 266.7 68.9, 283.3 69.5, 300.0 69.9 C 316.7 70.4, 333.3 70.7, 350.0 70.6 C 366.7 70.5, 383.3 70.0, 400.0 69.0 C 416.7 68.0, 433.3 66.5, 450.0 64.6 C 466.7 62.6, 483.3 60.4, 500.0 58.0 C 516.7 55.7, 533.3 53.4, 550.0 51.4 C 566.7 49.5, 583.3 47.9, 600.0 47.0 C 616.7 46.2, 633.3 46.0, 650.0 46.4 C 666.7 46.9, 683.3 48.1, 700.0 49.6 C 716.7 51.1, 733.3 53.1, 750.0 55.0 C 766.7 57.0, 783.3 58.9, 800.0 60.6 C 816.7 62.2, 833.3 63.6, 850.0 64.6 C 866.7 65.5, 883.3 66.1, 900.0 66.4 C 916.7 66.8, 933.3 66.9, 950.0 67.0 C 966.7 67.0, 983.3 67.1, 1000.0 67.4 C 1016.7 67.6, 1033.3 68.0, 1050.0 68.4 C 1066.7 68.9, 1083.3 69.5, 1100.0 69.9 C 1116.7 70.4, 1133.3 70.7, 1150.0 70.6 C 1166.7 70.5, 1183.3 70.0, 1200.0 69.0 C 1216.7 68.0, 1233.3 66.5, 1250.0 64.6 C 1266.7 62.6, 1283.3 60.4, 1300.0 58.0 C 1316.7 55.7, 1333.3 53.4, 1350.0 51.4 C 1366.7 49.5, 1383.3 47.9, 1400.0 47.0 C 1416.7 46.2, 1433.3 46.0, 1450.0 46.4 C 1466.7 46.9, 1483.3 48.1, 1500.0 49.6 C 1516.7 51.1, 1533.3 53.1, 1550.0 55.0 C 1566.7 57.0, 1583.3 58.9, 1600.0 60.6 L1600 110 L0 110 Z" fill="#4dbead"/>
-      </svg>
-      <svg class="wave-layer-4" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0 77.3 C 16.7 77.8, 33.3 78.1, 50.0 78.0 C 66.7 77.9, 83.3 77.5, 100.0 76.6 C 116.7 75.8, 133.3 74.6, 150.0 73.2 C 166.7 71.8, 183.3 70.3, 200.0 68.7 C 216.7 67.1, 233.3 65.6, 250.0 64.3 C 266.7 63.0, 283.3 62.0, 300.0 61.4 C 316.7 60.7, 333.3 60.4, 350.0 60.4 C 366.7 60.5, 383.3 60.8, 400.0 61.3 C 416.7 61.8, 433.3 62.5, 450.0 63.2 C 466.7 63.9, 483.3 64.7, 500.0 65.3 C 516.7 66.0, 533.3 66.6, 550.0 67.1 C 566.7 67.7, 583.3 68.2, 600.0 68.7 C 616.7 69.2, 633.3 69.8, 650.0 70.4 C 666.7 71.1, 683.3 71.9, 700.0 72.7 C 716.7 73.5, 733.3 74.4, 750.0 75.2 C 766.7 76.0, 783.3 76.8, 800.0 77.3 C 816.7 77.8, 833.3 78.1, 850.0 78.0 C 866.7 77.9, 883.3 77.5, 900.0 76.6 C 916.7 75.8, 933.3 74.6, 950.0 73.2 C 966.7 71.8, 983.3 70.3, 1000.0 68.7 C 1016.7 67.1, 1033.3 65.6, 1050.0 64.3 C 1066.7 63.0, 1083.3 62.0, 1100.0 61.4 C 1116.7 60.7, 1133.3 60.4, 1150.0 60.4 C 1166.7 60.5, 1183.3 60.8, 1200.0 61.3 C 1216.7 61.8, 1233.3 62.5, 1250.0 63.2 C 1266.7 63.9, 1283.3 64.7, 1300.0 65.3 C 1316.7 66.0, 1333.3 66.6, 1350.0 67.1 C 1366.7 67.7, 1383.3 68.2, 1400.0 68.7 C 1416.7 69.2, 1433.3 69.8, 1450.0 70.4 C 1466.7 71.1, 1483.3 71.9, 1500.0 72.7 C 1516.7 73.5, 1533.3 74.4, 1550.0 75.2 C 1566.7 76.0, 1583.3 76.8, 1600.0 77.3 L1600 110 L0 110 Z" fill="#256060"/>
-      </svg>
-      <svg class="wave-layer-5" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0 69.9 C 16.7 70.9, 33.3 72.0, 50.0 72.9 C 66.7 73.9, 83.3 74.6, 100.0 75.3 C 116.7 75.9, 133.3 76.5, 150.0 77.0 C 166.7 77.5, 183.3 78.1, 200.0 78.7 C 216.7 79.4, 233.3 80.1, 250.0 81.1 C 266.7 82.0, 283.3 83.1, 300.0 84.1 C 316.7 85.2, 333.3 86.2, 350.0 87.0 C 366.7 87.8, 383.3 88.3, 400.0 88.4 C 416.7 88.4, 433.3 88.0, 450.0 87.1 C 466.7 86.1, 483.3 84.7, 500.0 82.9 C 516.7 81.2, 533.3 79.1, 550.0 77.0 C 566.7 74.9, 583.3 72.8, 600.0 71.1 C 616.7 69.3, 633.3 67.9, 650.0 66.9 C 666.7 66.0, 683.3 65.6, 700.0 65.6 C 716.7 65.7, 733.3 66.2, 750.0 67.0 C 766.7 67.8, 783.3 68.8, 800.0 69.9 C 816.7 70.9, 833.3 72.0, 850.0 72.9 C 866.7 73.9, 883.3 74.6, 900.0 75.3 C 916.7 75.9, 933.3 76.5, 950.0 77.0 C 966.7 77.5, 983.3 78.1, 1000.0 78.7 C 1016.7 79.4, 1033.3 80.1, 1050.0 81.1 C 1066.7 82.0, 1083.3 83.1, 1100.0 84.1 C 1116.7 85.2, 1133.3 86.2, 1150.0 87.0 C 1166.7 87.8, 1183.3 88.3, 1200.0 88.4 C 1216.7 88.4, 1233.3 88.0, 1250.0 87.1 C 1266.7 86.1, 1283.3 84.7, 1300.0 82.9 C 1316.7 81.2, 1333.3 79.1, 1350.0 77.0 C 1366.7 74.9, 1383.3 72.8, 1400.0 71.1 C 1416.7 69.3, 1433.3 67.9, 1450.0 66.9 C 1466.7 66.0, 1483.3 65.6, 1500.0 65.6 C 1516.7 65.7, 1533.3 66.2, 1550.0 67.0 C 1566.7 67.8, 1583.3 68.8, 1600.0 69.9 L1600 110 L0 110 Z" fill="#4dbead"/>
-      </svg>
-      <svg class="wave-layer-6" viewBox="0 0 1600 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0 88.8 C 16.7 88.5, 33.3 88.3, 50.0 88.0 C 66.7 87.7, 83.3 87.2, 100.0 86.6 C 116.7 86.0, 133.3 85.2, 150.0 84.3 C 166.7 83.4, 183.3 82.3, 200.0 81.2 C 216.7 80.2, 233.3 79.1, 250.0 78.2 C 266.7 77.4, 283.3 76.7, 300.0 76.4 C 316.7 76.1, 333.3 76.1, 350.0 76.6 C 366.7 77.0, 383.3 77.8, 400.0 78.9 C 416.7 79.9, 433.3 81.3, 450.0 82.6 C 466.7 84.0, 483.3 85.4, 500.0 86.6 C 516.7 87.8, 533.3 88.9, 550.0 89.7 C 566.7 90.4, 583.3 90.9, 600.0 91.1 C 616.7 91.3, 633.3 91.3, 650.0 91.2 C 666.7 91.0, 683.3 90.7, 700.0 90.4 C 716.7 90.1, 733.3 89.8, 750.0 89.5 C 766.7 89.2, 783.3 89.0, 800.0 88.8 C 816.7 88.5, 833.3 88.3, 850.0 88.0 C 866.7 87.7, 883.3 87.2, 900.0 86.6 C 916.7 86.0, 933.3 85.2, 950.0 84.3 C 966.7 83.4, 983.3 82.3, 1000.0 81.2 C 1016.7 80.2, 1033.3 79.1, 1050.0 78.2 C 1066.7 77.4, 1083.3 76.7, 1100.0 76.4 C 1116.7 76.1, 1133.3 76.1, 1150.0 76.6 C 1166.7 77.0, 1183.3 77.8, 1200.0 78.9 C 1216.7 79.9, 1233.3 81.3, 1250.0 82.6 C 1266.7 84.0, 1283.3 85.4, 1300.0 86.6 C 1316.7 87.8, 1333.3 88.9, 1350.0 89.7 C 1366.7 90.4, 1383.3 90.9, 1400.0 91.1 C 1416.7 91.3, 1433.3 91.3, 1450.0 91.2 C 1466.7 91.0, 1483.3 90.7, 1500.0 90.4 C 1516.7 90.1, 1533.3 89.8, 1550.0 89.5 C 1566.7 89.2, 1583.3 89.0, 1600.0 88.8 L1600 110 L0 110 Z" fill="#122224"/>
-      </svg>
-    </div>
-  </section>
-
-  <div class="ocean-depth">
-
-  <div class="bubbles" aria-hidden="true">
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-  </div>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <p class="section-label reveal" data-i18n="about.label">About us</p>
-    <h2 class="section-title reveal" data-i18n-html="about.title">Built for the most<br>demanding environments</h2>
-    <p class="section-body about-lead reveal" data-i18n="about.lead">Development and action plan for securing groundwater resources. And for the establishment of groundwater sources 2025–2027.</p>
-    <p class="section-body about-para reveal" data-i18n="about.p1">My name is Lars Falk. My colleagues and I have, over almost three decades (founded 1992), developed a programme and business concept for locating and evaluating suitable land areas to establish wells, and to produce and secure drinking water from groundwater sources in Scandinavia.</p>
-    <p class="section-body about-para reveal" data-i18n="about.p2">Today, our water resources are a highly topical issue, and public awareness of the importance of having access to clean water cannot be taken for granted.</p>
-    <p class="section-body about-para reveal" data-i18n="about.p3">To supply 50,000 residents/personnel with approximately 3 litres of drinking water per day requires access to 150,000 litres per day — or 54,750,000 litres per year — from a secured drinking water well.</p>
-    <p class="section-body about-para reveal" data-i18n="about.p4">Over the years, we have continuously updated our development and action plan for groundwater sources for the target groups we have focused on since the 1990s.</p>
-    <p class="section-body about-para reveal" data-i18n="about.p5">The global situation is entirely different today, and our chosen target groups are the Armed Forces, Police and Rescue Services, Municipalities, and Institutions in each respective country.</p>
-    <p class="section-body about-para reveal"><span class="red-word">Säki</span> <span data-i18n="about.p6">Today, 2025–2027, our entire development and action plan for groundwater is classified for security and confidentiality. We present no details on our website — this is initially communicated verbally upon request, during a physical meeting.</span></p>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery-section">
-    <div class="gallery-grid">
-      <div class="gallery-item reveal"><img src="images/Untitled.png" alt="Groundwater survey site" width="612" height="408" loading="lazy" decoding="async"></div>
-      <div class="gallery-item reveal"><img src="images/Untitled 1.png" alt="Field operations" width="597" height="396" loading="lazy" decoding="async"></div>
-      <div class="gallery-item reveal"><img src="images/Untitled 2.png" alt="Well infrastructure" width="438" height="253" loading="lazy" decoding="async"></div>
-      <div class="gallery-item reveal"><img src="images/Untitled 3.png" alt="Groundwater assessment" width="373" height="250" loading="lazy" decoding="async"></div>
-      <div class="gallery-item reveal"><img src="images/Untitled 4.png" alt="Subsurface analysis" width="442" height="253" loading="lazy" decoding="async"></div>
-      <div class="gallery-item reveal"><img src="images/Untitled 5.png" alt="Water source development" width="627" height="387" loading="lazy" decoding="async"></div>
-    </div>
-    <div style="margin-top: 40px; display: flex; justify-content: center;">
-      <img src="images/logo.png" alt="Maxilium Logo" class="company-logo-img">
-    </div>
-  </section>
-
-
-  <footer>
-    <div class="footer-logo">Maxilium <span>Groundwater</span></div>
-    <p data-i18n="footer.copy">© 2026 Maxilium Groundwater. All rights reserved.</p>
-    <p data-i18n="footer.tag">Specialist Military Groundwater Services</p>
-    <div class="footer-legal">
-      <p>Org.nr: 195805068250 &nbsp;·&nbsp; F-skatt 2026</p>
-      <p>Ölmevägen 17, SE-123 32 Farsta, Stockholm</p>
-      <p>Filial: Övre Hantverksgatan 32A, Östersund</p>
-    </div>
-  </footer>
-
-  </div><!-- /ocean-depth -->
-
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
-    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close image preview">&#x2715;</button>
-    <button type="button" class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8592;</button>
-    <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Expanded gallery image">
-    <button type="button" class="lightbox-next" id="lightbox-next" aria-label="Next image">&#8594;</button>
-  </div>
-
-  <!-- Old floating lang toggle removed -->
-
-  <div class="depth-meter" aria-hidden="true">
-    <div class="depth-meter-track">
-      <div class="depth-meter-fill"></div>
-    </div>
-    <div class="depth-labels">
-      <span class="depth-label">SURFACE</span>
-      <span class="depth-label">15m</span>
-      <span class="depth-label">40m</span>
-      <span class="depth-label depth-label-aq">&gt;80m<br>AQUIFER</span>
-    </div>
-  </div>
-
-</div><!-- /#mobile-root -->
-
-<div id="desktop-root">
 
   <!-- Depth markers (left margin) -->
   <div class="depth-markers" aria-hidden="true">
@@ -2000,6 +1229,7 @@
         </div><!-- /.hero-text -->
       </div><!-- /.hero-columns -->
     </div>
+    <div class="hero-wave" aria-hidden="true"><canvas id="hero-wave-canvas"></canvas></div>
   </header>
 
   <!-- STRATUM 1: ABOUT -->
@@ -2078,19 +1308,19 @@
   <!-- Bubbles — generated by desktop JS -->
   <div class="bubbles" aria-hidden="true"></div>
 
-</div><!-- /#desktop-root -->
+  <!-- Fixed wave overlay — inside #desktop-root so z-index works with canvas wave -->
+  <div class="wave-overlay" aria-hidden="true">
+    <svg viewBox="0 0 1440 140" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-layer" d="M0 50 Q360 35 720 50 T1440 40 V140 H0Z" fill="#2a6a6e" opacity="0.45"/>
+      <path class="wave-layer" d="M0 58 Q360 42 720 58 T1440 48 V140 H0Z" fill="#35807a" opacity="0.35"/>
+      <path class="wave-layer" d="M0 66 Q360 50 720 66 T1440 56 V140 H0Z" fill="#4dbead" opacity="0.3"/>
+      <path class="wave-layer" d="M0 74 Q360 58 720 74 T1440 64 V140 H0Z" fill="#256060" opacity="0.6"/>
+      <path class="wave-layer" d="M0 82 Q360 66 720 82 T1440 72 V140 H0Z" fill="#4dbead" opacity="0.35"/>
+      <path class="wave-layer" d="M0 90 Q360 76 720 90 T1440 82 V140 H0Z" fill="#122224" opacity="1"/>
+    </svg>
+  </div>
 
-<!-- Fixed wave overlay — moved outside to be visible on mobile too -->
-<div class="wave-overlay" aria-hidden="true">
-  <svg viewBox="0 0 1440 140" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <path class="wave-layer" d="M0 50 Q360 35 720 50 T1440 40 V140 H0Z" fill="#2a6a6e" opacity="0.45"/>
-    <path class="wave-layer" d="M0 58 Q360 42 720 58 T1440 48 V140 H0Z" fill="#35807a" opacity="0.35"/>
-    <path class="wave-layer" d="M0 66 Q360 50 720 66 T1440 56 V140 H0Z" fill="#4dbead" opacity="0.3"/>
-    <path class="wave-layer" d="M0 74 Q360 58 720 74 T1440 64 V140 H0Z" fill="#256060" opacity="0.6"/>
-    <path class="wave-layer" d="M0 82 Q360 66 720 82 T1440 72 V140 H0Z" fill="#4dbead" opacity="0.35"/>
-    <path class="wave-layer" d="M0 90 Q360 76 720 90 T1440 82 V140 H0Z" fill="#122224" opacity="1"/>
-  </svg>
-</div>
+</div><!-- /#desktop-root -->
 
 <script>
 // Reload when crossing the mobile/desktop boundary so JS re-initialises correctly
@@ -2108,231 +1338,10 @@ if (window.innerWidth < 768) {
   /* ═══════════════════════════════════════
      MOBILE JS
      ═══════════════════════════════════════ */
-  const T = {
-    en: {
-      'nav.home': 'Home',
-      'nav.about': 'About',
-      'nav.contact': 'Contact',
-      'hero.tag': 'Status · Operational',
-      'hero.title': 'Water, secured.<br><em>Wherever</em> it matters.',
-      'hero.sub': 'Development of Groundwater Sources — Scandinavia',
-      'hero.sub2': 'Development and action plan for securing groundwater resources — for the establishment of groundwater sources 2025–2030.',
-      'about.label': 'About us',
-      'about.title': 'Built for the most<br>demanding environments',
-      'about.lead': 'Development and action plan for securing groundwater resources. And for the establishment of groundwater sources 2025–2027.',
-      'about.p1': 'My name is Lars Falk. My colleagues and I have, over almost three decades (founded 1992), developed a programme and business concept for locating and evaluating suitable land areas to establish wells, and to produce and secure drinking water from groundwater sources in Scandinavia.',
-      'about.p2': 'Today, our water resources are a highly topical issue, and public awareness of the importance of having access to clean water cannot be taken for granted.',
-      'about.p3': 'To supply 50,000 residents/personnel with approximately 3 litres of drinking water per day requires access to 150,000 litres per day — or 54,750,000 litres per year — from a secured drinking water well.',
-      'about.p4': 'Over the years, we have continuously updated our development and action plan for groundwater sources for the target groups we have focused on since the 1990s.',
-      'about.p5': 'The global situation is entirely different today, and our chosen target groups are the Armed Forces, Police and Rescue Services, Municipalities, and Institutions in each respective country.',
-      'about.p6': 'Today, 2025–2027, our entire development and action plan for groundwater is classified for security and confidentiality. We present no details on our website — this is initially communicated verbally upon request, during a physical meeting.',
-      'contact.label': 'Contact',
-      'contact.title': "Contact",
-      'contact.body': 'If interested, please fill in your contact details in our form and we will get back to you.',
-      'ci.email': 'Email',
-      'ci.phone': 'Phone',
-      'f.name': 'Full name',
-      'f.name.ph': 'Cpl. J. Smith',
-      'f.org': 'Organisation',
-      'f.org.ph': 'Unit or agency',
-      'f.email': 'Email',
-      'f.email.ph': 'you@example.com',
-      'f.service': 'Service required',
-      'f.svc.default': 'Select a service…',
-      'f.svc.1': 'Groundwater assessment',
-      'f.svc.2': 'Water source development',
-      'f.svc.3': 'Contamination survey',
-      'f.svc.4': 'Infrastructure planning',
-      'f.svc.5': 'General enquiry',
-      'f.message': 'Message',
-      'f.msg.ph': 'Brief description of your requirement…',
-      'f.submit': 'Send message',
-      'f.success.title': 'Request Submitted',
-      'f.success.msg': 'Your briefing request has been received. You will be contacted through secure channels.',
-      'footer.copy': '© 2026 Maxilium Groundwater. All rights reserved.',
-      'footer.tag': 'Specialist Military Groundwater Services',
-    },
-    sv: {
-      'nav.home': 'Hem',
-      'nav.about': 'Om oss',
-      'nav.contact': 'Kontakt',
-      'hero.tag': 'Status · Operativ',
-      'hero.title': 'Vatten, säkrat.<br><em>Var det än</em> behövs.',
-      'hero.sub': 'Utveckling av grundvattentäkter — Skandinavien',
-      'hero.sub2': 'Utvecklings- och handlingsplan för säkerställande av grundvattenresurser — för etablering av grundvattentäkter år 2025–2030.',
-      'about.label': 'Om oss',
-      'about.title': 'Byggd för de mest<br>krävande miljöerna',
-      'about.lead': 'Utveckling- och handlingsplan för säkerställande av grundvattenresurser. Och för etablering av grundvattentäkter år 2025–2027.',
-      'about.p1': 'Mitt namn är Lars Falk. Jag och mina kollegor har under dryg tre decennier (uppstart 1992) utvecklat ett program och ett affärskoncept för att lokalisera och utvärdera ett lämpligt markområde för att etablera brunnar, producera och säkerställa dricksvatten från grundvattentäkter i Skandinavien.',
-      'about.p2': 'Idag är våra vattenresurser högaktuella och den allmänna kunskapen om vikten av att ha tillgång till rent vatten är inte en självklarhet.',
-      'about.p3': 'För att försörja 50 000 invånare/personal med ca 3 liter dricksvatten per dag krävs en tillgång på 150 000 liter per dag eller 54 750 000 liter per år en säkerställd dricksvattenbrunn.',
-      'about.p4': 'Vi har löpande under åren uppdaterat vår utveckling-och handlingsplan för grundvattentäkter för de målgrupper vi inriktat oss till redan under 90-talet.',
-      'about.p5': 'Världsläget är helt annorlunda idag och vårt val av målgrupper är Försvarsmakten, Polis- och Räddningstjänst, Kommuner och Institutioner i respektive land.',
-      'about.p6': 'Idag 2025-2027 är hela vår utvecklings- och handlingsplan för grundvatten säkerhets- och sekretess klassat. Vi presenterar inga detaljer på vår hemsida utan det sker initialt verbalt efter förfrågan vid ett fysiskt möte.',
-      'contact.label': 'Kontakt',
-      'contact.title': 'Kontakta oss',
-      'contact.body': 'Vid intresse fyll i dina kontaktuppgifter i vårt formulär så tar vi kontakt med er.',
-      'ci.email': 'E-post',
-      'ci.phone': 'Telefon',
-      'f.name': 'Fullständigt namn',
-      'f.name.ph': 'Kpl. J. Svensson',
-      'f.org': 'Organisation',
-      'f.org.ph': 'Enhet eller myndighet',
-      'f.email': 'E-post',
-      'f.email.ph': 'du@example.com',
-      'f.service': 'Önskad tjänst',
-      'f.svc.default': 'Välj en tjänst…',
-      'f.svc.1': 'Grundvattenbedömning',
-      'f.svc.2': 'Utveckling av vattenkälla',
-      'f.svc.3': 'Föroreningsundersökning',
-      'f.svc.4': 'Infrastrukturplanering',
-      'f.svc.5': 'Allmän förfrågan',
-      'f.message': 'Meddelande',
-      'f.msg.ph': 'Kort beskrivning av ert krav…',
-      'f.submit': 'Skicka meddelande',
-      'f.success.title': 'Förfrågan skickad',
-      'f.success.msg': 'Din förfrågan har mottagits. Du kommer att kontaktas via säkra kanaler.',
-      'footer.copy': '© 2026 Maxilium Groundwater. Alla rättigheter förbehållna.',
-      'footer.tag': 'Specialiserade militära grundvattentjänster',
-    }
-  };
 
   let currentLang;
   try { currentLang = localStorage.getItem('lang') || 'sv'; } catch (e) { currentLang = 'sv'; }
 
-  function applyLang(lang) {
-    currentLang = lang;
-    try { localStorage.setItem('lang', lang); } catch (e) {}
-    document.documentElement.lang = lang;
-    const dict = T[lang];
-
-    document.querySelectorAll('#mobile-root [data-i18n]').forEach(el => {
-      const key = el.dataset.i18n;
-      if (dict[key] !== undefined) el.textContent = dict[key];
-    });
-
-    document.querySelectorAll('#mobile-root [data-i18n-html]').forEach(el => {
-      const key = el.dataset.i18nHtml;
-      if (dict[key] !== undefined) el.innerHTML = dict[key];
-    });
-
-    document.querySelectorAll('#mobile-root [data-i18n-ph]').forEach(el => {
-      const key = el.dataset.i18nPh;
-      if (dict[key] !== undefined) el.placeholder = dict[key];
-    });
-
-    document.querySelectorAll('#mobile-root .lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
-  }
-
-  document.querySelectorAll('#mobile-root .lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
-  });
-
-  applyLang(currentLang);
-
-  // Map country cycling
-  (function() {
-    const mapSvg = document.querySelector('#mobile-root .map-svg');
-    if (!mapSvg) return;
-    const countries = ['se', 'no', 'fi'];
-    let activeCountry = 0;
-    function cycleCountry() {
-      countries.forEach(c => mapSvg.classList.remove('highlight-' + c));
-      mapSvg.classList.add('highlight-' + countries[activeCountry]);
-      activeCountry = (activeCountry + 1) % countries.length;
-    }
-    cycleCountry();
-    if (!reduceMotion) {
-      var cycleTimer = setInterval(cycleCountry, 4000);
-    }
-  })();
-
-
-
-  // Scroll reveal
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('#mobile-root .reveal').forEach(el => revealObs.observe(el));
-
-  // Lightbox
-  (function() {
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox) return;
-    const lbImg    = document.getElementById('lightbox-img');
-    const allImgs  = Array.from(document.querySelectorAll('.gallery-item img'));
-    const srcs     = [];
-    const seen     = new Set();
-    allImgs.forEach(function(img) {
-      if (!seen.has(img.src)) { seen.add(img.src); srcs.push(img.src); }
-    });
-    let current = 0;
-
-    function open(src) {
-      current = srcs.indexOf(src);
-      if (current < 0) current = 0;
-      lbImg.src = srcs[current];
-      lightbox.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function close() {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    function go(dir) {
-      current = (current + dir + srcs.length) % srcs.length;
-      lbImg.src = srcs[current];
-    }
-
-    allImgs.forEach(function(img) {
-      img.parentElement.style.cursor = 'pointer';
-      img.parentElement.addEventListener('click', function() { open(img.src); });
-    });
-
-    document.getElementById('lightbox-close').addEventListener('click', close);
-    document.getElementById('lightbox-prev').addEventListener('click', function() { go(-1); });
-    document.getElementById('lightbox-next').addEventListener('click', function() { go(1); });
-
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) close(); });
-
-    document.addEventListener('keydown', function(e) {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') go(-1);
-      if (e.key === 'ArrowRight') go(1);
-    });
-  })();
-
-  // Depth meter
-  (function() {
-    const meter = document.querySelector('#mobile-root .depth-meter');
-    const fill = document.querySelector('#mobile-root .depth-meter-fill');
-    const about = document.getElementById('about');
-    if (!meter || !fill || !about) return;
-    window.addEventListener('scroll', () => {
-      const rect = about.getBoundingClientRect();
-      const wh = window.innerHeight;
-      const visible = rect.top < wh * 0.85 && rect.bottom > wh * 0.15;
-      meter.style.opacity = visible ? '1' : '0';
-      const progress = Math.min(1, Math.max(0, (wh * 0.5 - rect.top) / (rect.bottom - rect.top)));
-      fill.style.height = (progress * 100) + '%';
-    }, { passive: true });
-  })();
-}
-
-if (window.innerWidth >= 768) {
-  /* ═══════════════════════════════════════
-     DESKTOP JS
-     ═══════════════════════════════════════ */
   const translations = {
     en: {
       statusOp: "OPERATIONAL",
@@ -2433,6 +1442,102 @@ if (window.innerWidth >= 768) {
       formSuccessMsg: "Din förfrågan har mottagits. Du kommer att kontaktas via säkra kanaler."
     }
   };
+  function applyLang(lang) {
+    currentLang = lang;
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    document.documentElement.lang = lang;
+    const dict = translations[lang];
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.dataset.i18nHtml;
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.dataset.i18nPh;
+      if (dict[key] !== undefined) el.placeholder = dict[key];
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+
+  applyLang(currentLang);
+
+
+
+
+
+
+
+  // Lightbox
+  (function() {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+    const lbImg    = document.getElementById('lightbox-img');
+    const allImgs  = Array.from(document.querySelectorAll('.gallery-item img'));
+    const srcs     = [];
+    const seen     = new Set();
+    allImgs.forEach(function(img) {
+      if (!seen.has(img.src)) { seen.add(img.src); srcs.push(img.src); }
+    });
+    let current = 0;
+
+    function open(src) {
+      current = srcs.indexOf(src);
+      if (current < 0) current = 0;
+      lbImg.src = srcs[current];
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function go(dir) {
+      current = (current + dir + srcs.length) % srcs.length;
+      lbImg.src = srcs[current];
+    }
+
+    allImgs.forEach(function(img) {
+      img.parentElement.style.cursor = 'pointer';
+      img.parentElement.addEventListener('click', function() { open(img.src); });
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', close);
+    document.getElementById('lightbox-prev').addEventListener('click', function() { go(-1); });
+    document.getElementById('lightbox-next').addEventListener('click', function() { go(1); });
+
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) close(); });
+
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'ArrowRight') go(1);
+    });
+  })();
+
+
+}
+
+if (window.innerWidth >= 768) {
+  /* ═══════════════════════════════════════
+     DESKTOP JS
+     ═══════════════════════════════════════ */
 
   (function () {
     'use strict';
@@ -2518,6 +1623,7 @@ if (window.innerWidth >= 768) {
     var WHEEL_THRESHOLD = 120;
 
     document.addEventListener('wheel', function (e) {
+      if (window.innerWidth <= 768) return;
       var activeStratum = strata[currentIndex];
 
       e.preventDefault();
@@ -2543,6 +1649,7 @@ if (window.innerWidth >= 768) {
     var touchStartY = 0;
     document.addEventListener('touchstart', function (e) { touchStartY = e.touches[0].clientY; }, { passive: true });
     document.addEventListener('touchend', function (e) {
+      if (window.innerWidth <= 768) return;
       var diff = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(diff) > 60) goTo(currentIndex + (diff > 0 ? 1 : -1));
     }, { passive: true });
@@ -2636,6 +1743,9 @@ if (window.innerWidth >= 768) {
     }
 
     // ---- Mouse-Reactive Wave Animation ----
+  })();
+
+  // ---- Waves (Global) ----
     var waveOverlay = document.querySelector('.wave-overlay');
     var wavePaths = Array.from(document.querySelectorAll('.wave-layer'));
     var layers = [
@@ -2722,8 +1832,72 @@ if (window.innerWidth >= 768) {
       requestAnimationFrame(animateWaves);
     }
     if (!reduceMotion) requestAnimationFrame(animateWaves);
-  })();
-}
+
+  // ---- Hero Canvas Waves (running stream) ----
+  if (!reduceMotion && window.innerWidth >= 768) {
+    (function () {
+      var canvas = document.getElementById('hero-wave-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var dpr = window.devicePixelRatio || 1;
+
+      var LAYERS = [
+        { alpha: 0.15, amp: 16, freq: 0.58, speed: 0.00015, phase: 0.0,  base: 0.28 },
+        { alpha: 0.28, amp: 13, freq: 0.88, speed: 0.00024, phase: 1.90, base: 0.37 },
+        { alpha: 0.42, amp: 11, freq: 0.70, speed: 0.00034, phase: 3.20, base: 0.46 },
+        { alpha: 0.56, amp:  9, freq: 1.02, speed: 0.00044, phase: 1.05, base: 0.54 },
+        { alpha: 0.70, amp:  8, freq: 0.80, speed: 0.00052, phase: 2.60, base: 0.61 },
+        { alpha: 0.85, amp:  7, freq: 1.15, speed: 0.00060, phase: 0.80, base: 0.68 },
+        { alpha: 1.00, amp:  6, freq: 0.95, speed: 0.00068, phase: 3.80, base: 0.75 }
+      ];
+      var COLOR = '#4a88bb';
+
+      function resize() {
+        canvas.width  = Math.round((canvas.offsetWidth  || window.innerWidth)  * dpr);
+        canvas.height = Math.round((canvas.offsetHeight || 150) * dpr);
+      }
+
+      function draw(ts) {
+        var W = canvas.width;
+        var H = canvas.height;
+        ctx.clearRect(0, 0, W, H);
+
+        LAYERS.forEach(function (l) {
+          var yBase = H * l.base;
+          var amp   = l.amp * dpr;
+          var step  = dpr > 1 ? 3 : 2;
+
+          ctx.globalAlpha = l.alpha;
+          ctx.fillStyle   = COLOR;
+          ctx.beginPath();
+
+          for (var x = 0; x <= W; x += step) {
+            var y = yBase + Math.sin(x / W * Math.PI * 2 * l.freq + ts * l.speed + l.phase) * amp;
+            x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+          }
+
+          ctx.lineTo(W, H);
+          ctx.lineTo(0, H);
+          ctx.closePath();
+          ctx.fill();
+        });
+
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+      }
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 100);
+      });
+
+      resize();
+      requestAnimationFrame(draw);
+    })();
+  }
+
+} // if (window.innerWidth >= 768)
 </script>
 
 </body>
